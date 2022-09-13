@@ -1,0 +1,5 @@
+@import './pages/cssVariables.css';
+
+.App {
+    color: var(--darkGreen);
+}
