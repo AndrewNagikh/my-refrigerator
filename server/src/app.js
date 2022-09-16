@@ -7,7 +7,7 @@ const express = require('express');
 const session = require('express-session');
 const FileStore = require('session-file-store')(session);
 
-const { sequelize } = require('../db/models');
+// const { sequelize } = require('../db/models');
 
 const app = express();
 
@@ -36,7 +36,7 @@ app.use(session(sessionConfig));
 
 app.listen(PORT, async () => {
   try {
-    await sequelize.authenticate();
+    // await sequelize.authenticate();
     console.log('Соединение с базой установлено!');
   } catch (err) {
     console.log(err, 'Error!');
