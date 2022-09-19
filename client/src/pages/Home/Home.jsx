@@ -13,19 +13,22 @@ export default function Home() {
     // const apiKey = '3f8c71044afe46a1a3cae029bb6d7832';
     console.log('search->', search);
     const searchStr = search.split(' ').join(',+');
-    const response = await fetch(`https://api.spoonacular.com/recipes/findByIngredients?ingredients=${searchStr}&ranking=2&number=10&apiKey=${apiKey}`, {
+    // const response = await fetch(`https://api.spoonacular.com/recipes/findByIngredients?ingredients=${searchStr}&ranking=2&number=10&apiKey=${apiKey}`, {
+    //   method: 'GET',
+    // });
+
+    const response = await fetch(`https://api.spoonacular.com/recipes/complexSearch?includeIngredients=${searchStr}&addRecipeInformation=true&number=5&apiKey=${apiKey}`, {
       method: 'GET',
     });
-    console.log('response->', response);
     const recipesDef = await response.json();
     console.log('recipesDef', recipesDef);
-    const recipesProm = recipesDef
+    const recipesProm = recipesDef.results
       .map(async (recipe) => ({
         id: recipe.id,
         title: recipe.title,
-        missedIngredients: recipe.missedIngredients,
-        usedIngredients: recipe.usedIngredients,
         image: recipe.image,
+        readyInMinutes: recipe.readyInMinutes,
+        servings: recipe.servings,
         fav: false,
       }));
     const rec = await Promise.all(recipesProm);

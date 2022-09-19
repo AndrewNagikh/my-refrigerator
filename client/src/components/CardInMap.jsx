@@ -4,35 +4,23 @@ import React from 'react';
 export default function CardInMap({ recipe }) {
   return (
     <div className="card flex-card w-100 mButtom">
-      <div className="card-body d-flex align-items-center flex-column" key={recipe.id}>
+      <div className="card-body d-flex align-items-center flex-column">
         <div className="m-2">
-          <a href={`/breakfast/${recipe.id}`} className="a-style font-h2">{recipe.title}</a>
+          <a href={`/meal/${recipe.id}`} className="a-style font-h2">{recipe.title}</a>
         </div>
         <div className="d-flex flex-row justify-content-around w-100">
           <div className="col-md-5">
             <img src={recipe.image} className="img-fluid rounded-start" alt="..." />
           </div>
           <div>
-            missedIngredients:
+            {recipe.readyInMinutes}
             {' '}
-            {recipe.missedIngredients?.map((ingredient) => (
-              <ul key={ingredient.id}>
-                <li>
-                  {ingredient.name}
-                </li>
-              </ul>
-            ))}
+            min
           </div>
           <div>
-            usedIngredients:
+            {recipe.servings}
             {' '}
-            {recipe.usedIngredients?.map((ingredient) => (
-              <ul key={ingredient.id}>
-                <li>
-                  {ingredient.name}
-                </li>
-              </ul>
-            ))}
+            servings
           </div>
         </div>
       </div>
