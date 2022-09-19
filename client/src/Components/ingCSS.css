@@ -1,0 +1,34 @@
+@import '../pages/cssVariables.css';
+
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+.ingridient-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-right: 10px;
+}
+
+.ingridient-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+figcaption {
+    text-align: center;
+}
+
+.btn {
+    width: 70%;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
