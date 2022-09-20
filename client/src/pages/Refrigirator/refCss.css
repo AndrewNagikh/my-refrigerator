@@ -12,10 +12,18 @@
     margin: 0;
 }
 
+.my-ref {
+    border: black 2px solid;
+    padding: 5px;
+    border-radius: 20px;
+    margin-right: 5px;
+}
+
 .ref-container {
     width: 100%;
     display: flex;
     justify-content: space-between;
+    margin-bottom: 10px;
 }
 
 .title {
@@ -26,6 +34,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    border: black 2px solid;
+    padding: 5px;
+    border-radius: 20px;
 }
 
 .ingridients-list, .friedge {
@@ -39,4 +50,24 @@
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
+}
+
+.ing {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.ing_input {
+    display: block;
+    background-color: #f8f8f8;
+    outline: none;
+    width: 100%;
+    border: 0;
+    padding: 8px 36px 8px 44px;
+    box-sizing: border-box;
+    border-radius: 30px;
+    line-height: 32px;
+    font-size: 17px;
+    margin: 0;
 }
