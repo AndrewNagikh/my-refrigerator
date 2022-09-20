@@ -12,6 +12,7 @@ import Refrigirator from './pages/Refrigirator/Refrigirator';
 import RecipePage from './pages/RecipePage/RecipePage';
 import Login from './pages/Login/Login';
 import Registration from './pages/Registration/Registration';
+import Profile from './pages/profile/Profile';
 
 const clientId = '732344056543-jeo72mj73978okpth0nr3k1mrlpl19ac.apps.googleusercontent.com';
 
@@ -52,6 +53,7 @@ function App() {
         <Routes>
           <Route path="/" />
           {/* <Route path="/auth" element={<Auth />} /> */}
+          <Route path="/profile" element={<Profile />} />
           <Route path="/login" element={<Login />} />
           <Route path="/registration" element={<Registration />} />
           <Route path="/recipe/:id" element={<RecipePage />} />
