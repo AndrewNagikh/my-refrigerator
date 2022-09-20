@@ -8,6 +8,7 @@ import Cousines from './pages/Cousines/Cousines';
 import Types from './pages/Types/Types';
 import Refrigirator from './pages/Refrigirator/Refrigirator';
 import RecipePage from './pages/RecipePage/RecipePage';
+import Profile from './pages/profile/Profile';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Routes>
             <Route path="/" />
             {/* <Route path="/auth" element={<Auth />} /> */}
+            <Route path="/profile" element={<Profile />} />
             <Route path="/recipe/:id" element={<RecipePage />} />
             <Route path="/my-ref" element={<Refrigirator />} />
             <Route path="/cuisine/:cuisine" element={<Cousines />} />
