@@ -9,7 +9,7 @@ function RecipeCard({
 }) {
   return (
     <div className="recipe-card">
-      <figure>
+      <figure className="card-bg-transparent">
         <Link to={`/recipe/${id}`}>
           <img src={url} alt="..." />
         </Link>

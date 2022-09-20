@@ -13,6 +13,7 @@ import OneMeal from './pages/OneMeal/OneMeal';
 import Login from './pages/Login/Login';
 import Registration from './pages/Registration/Registration';
 import Profile from './pages/profile/Profile';
+import Home from './pages/Home/Home';
 
 const clientId = '732344056543-jeo72mj73978okpth0nr3k1mrlpl19ac.apps.googleusercontent.com';
 
@@ -51,7 +52,7 @@ function App() {
       <Header />
       <div className="container-xl">
         <Routes>
-          <Route path="/" />
+          <Route path="/" element={<Home />} />
           {/* <Route path="/auth" element={<Auth />} /> */}
           <Route path="/profile" element={<Profile />} />
           <Route path="/login" element={<Login />} />
