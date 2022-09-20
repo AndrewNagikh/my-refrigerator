@@ -77,6 +77,24 @@ router.get('/checkSession', async (req, res) => {
   }
 });
 
+router.post('/google', async (req, res) => {
+  try {
+    const { name, email, imageUrl } = req.body;
+    const user = await User.findOne({ where: { email } });
+    if (!user) {
+      await User.create({ login: name, email, imageUrl });
+    }
+    req.session.save(() => {
+      res.status(200).json({ isSuccess: true });
+    });
+    // } else {
+    //   res.sendStatus(400);
+    // }
+  } catch (error) {
+    res.sendStatus(500);
+  }
+});
+
 // router.get('/logout', (req, res) => {
 //   try {
 //     if (req.session.newUser || req.session.user) {
