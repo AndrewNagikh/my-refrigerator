@@ -8,7 +8,7 @@ const session = require('express-session');
 const FileStore = require('session-file-store')(session);
 const cors = require('cors');
 
-const { sequelize } = require('../db/models');
+// const { sequelize } = require('../db/models');
 
 const authRoutes = require('./routes/authRoutes');
 
@@ -47,7 +47,7 @@ app.use('/api/v1', authRoutes);
 
 app.listen(PORT, async () => {
   try {
-    await sequelize.authenticate();
+    // await sequelize.authenticate();
     console.log('Соединение с базой установлено!');
   } catch (err) {
     console.log(err, 'Error!');
