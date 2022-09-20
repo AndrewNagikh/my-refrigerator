@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-// import { useSelector } from 'react-redux';
 import FormSearch from '../../components/FormSearch';
-import CardInMap from '../../components/CardInMap';
+import RecipeCard from '../../Components/RecipeCard';
+import './homeCSS.css';
 
 export default function Home() {
   const [recipes, setReciepes] = useState([]);
@@ -17,7 +17,7 @@ export default function Home() {
     //   method: 'GET',
     // });
 
-    const response = await fetch(`https://api.spoonacular.com/recipes/complexSearch?includeIngredients=${searchStr}&addRecipeInformation=true&number=5&apiKey=${apiKey}`, {
+    const response = await fetch(`https://api.spoonacular.com/recipes/complexSearch?query=${searchStr}&addRecipeInformation=true&number=10&apiKey=${apiKey}`, {
       method: 'GET',
     });
     const recipesDef = await response.json();
@@ -29,22 +29,35 @@ export default function Home() {
         image: recipe.image,
         readyInMinutes: recipe.readyInMinutes,
         servings: recipe.servings,
+        summary: recipe.summary,
+        dishType: recipe.dishTypes.at(0),
         fav: false,
       }));
     const rec = await Promise.all(recipesProm);
     setReciepes(rec);
-    console.log(recipes);
+    console.log('recipes ', rec);
   };
+  // className="w-25 h-25 m-3 d-flex justify-content-center"
 
   return (
-    <div className="d-flex align-items-center flex-column">
-      <FormSearch submitHandler={submitHandler} id="searchForm" className="w-25 h-25 m-3 d-flex justify-content-center" />
+    <div>
+      <div>
+        <FormSearch submitHandler={submitHandler} id="searchForm" />
+      </div>
 
-      <div className="w-50 m-3">
+      <div className="recipeList">
         {recipes && recipes.map((recipe) => (
-          <CardInMap recipe={recipe} key={recipe.id} />
+          <RecipeCard
+            url={recipe.image}
+            title={recipe.title}
+            summary={recipe.summary}
+            dishType={recipe.dishType}
+            preparationMinutes={recipe.readyInMinutes}
+            key={recipe.id}
+          />
         ))}
       </div>
+
     </div>
   );
 }

@@ -1,5 +1,7 @@
 @import './pages/cssVariables.css';
 
-.App {
-    color: var(--darkGreen);
+.container-xl {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
 }

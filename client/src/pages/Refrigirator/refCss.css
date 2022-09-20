@@ -1,0 +1,42 @@
+@import '../cssVariables.css';
+
+* {
+    font-family: 'Roboto';
+}
+
+.wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0;
+}
+
+.ref-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.title {
+    text-align: center;
+}
+
+.ingridients {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ingridients-list, .friedge {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.recipes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
