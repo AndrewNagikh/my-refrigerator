@@ -53,21 +53,22 @@
 }
 
 .ing {
+    width: 100%;
+    margin-top: 8px;
+    padding: 10px;
     display: flex;
     align-items: center;
-    width: 100%;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    flex-grow: 2;
+    height: 48px;
 }
 
 .ing_input {
-    display: block;
-    background-color: #f8f8f8;
-    outline: none;
     width: 100%;
+    flex-grow: 2;
+    padding: 0 16px;
     border: 0;
-    padding: 8px 36px 8px 44px;
-    box-sizing: border-box;
-    border-radius: 30px;
-    line-height: 32px;
-    font-size: 17px;
-    margin: 0;
+    outline: 0;
+    background-color: inherit;
 }

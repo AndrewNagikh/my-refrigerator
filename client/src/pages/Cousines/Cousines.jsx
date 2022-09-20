@@ -12,7 +12,6 @@ function Cousines() {
       const recipesReq = await fetch(`https://api.spoonacular.com/recipes/complexSearch?cuisine=${cuisine.toLowerCase()}&number=50&addRecipeInformation=true&apiKey=dcc7904ab8df4f84b3ec4be84eee706a`);
       const recipesRes = await recipesReq.json();
       setRecipes({ isLoad: true, recipesList: recipesRes.results });
-      console.log(recipesRes);
     };
     getRecipes();
   }, [cuisine]);

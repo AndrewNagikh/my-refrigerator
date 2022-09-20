@@ -78,7 +78,6 @@ export const reducers = (state = initState, action) => {
         login: action.payload.login || action.payload.name,
         email: action.payload.email,
       };
-      console.log(setUser);
       return { ...state, user: setUser, isAuth: true };
     case types.LOGOUT_USER:
       return { ...state, user: { id: null, login: '', email: '' }, isAuth: false };
