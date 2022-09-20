@@ -9,7 +9,7 @@ import './App.css';
 import Cousines from './pages/Cousines/Cousines';
 import Types from './pages/Types/Types';
 import Refrigirator from './pages/Refrigirator/Refrigirator';
-import RecipePage from './pages/RecipePage/RecipePage';
+import OneMeal from './pages/OneMeal/OneMeal';
 import Login from './pages/Login/Login';
 import Registration from './pages/Registration/Registration';
 import Profile from './pages/profile/Profile';
@@ -56,7 +56,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/login" element={<Login />} />
           <Route path="/registration" element={<Registration />} />
-          <Route path="/recipe/:id" element={<RecipePage />} />
+          <Route path="/recipe/:id" element={<OneMeal />} />
           <Route path="/my-ref" element={<Refrigirator />} />
           <Route path="/cuisine/:cuisine" element={<Cousines />} />
           <Route path="/type/:type" element={<Types />} />

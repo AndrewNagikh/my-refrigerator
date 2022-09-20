@@ -39,7 +39,7 @@ function Refrigirator() {
         if (ingCash[ingridientsValue.ingridient]) {
           setIngridients({ isLoad: true, ingridients: ingCash[ingridientsValue.ingridient] });
         } else {
-          const ingridientsReq = await fetch(`https://api.spoonacular.com/food/ingredients/search?query=${ingridientsValue.ingridient}&apiKey=0affb3ba41434bc6ad794365c333f0fb`);
+          const ingridientsReq = await fetch(`https://api.spoonacular.com/food/ingredients/search?query=${ingridientsValue.ingridient}&apiKey=dcc7904ab8df4f84b3ec4be84eee706a`);
           const ingridientRes = await ingridientsReq.json();
           dispath(addIng(ingridientRes.results, ingridientsValue.ingridient));
           setIngridients({ isLoad: true, ingridients: ingridientRes.results });
@@ -55,7 +55,7 @@ function Refrigirator() {
     };
     const getRecipes = async () => {
       if (fridge.length >= 1) {
-        const recipesReq = await fetch(`https://api.spoonacular.com/recipes/complexSearch?includeIngredients=${getIngNames()}&sortDirection=desc&addRecipeInformation=true&number=10&apiKey=0affb3ba41434bc6ad794365c333f0fb`);
+        const recipesReq = await fetch(`https://api.spoonacular.com/recipes/complexSearch?includeIngredients=${getIngNames()}&sortDirection=desc&addRecipeInformation=true&number=10&apiKey=dcc7904ab8df4f84b3ec4be84eee706a`);
         const recipesRes = await recipesReq.json();
         setRecipes(recipesRes.results);
         console.log(recipes);

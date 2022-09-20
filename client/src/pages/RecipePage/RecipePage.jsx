@@ -6,7 +6,7 @@ function RecipePage() {
   const [recipeData, setRecipeData] = useState({});
   useEffect(() => {
     const getRecipeData = async () => {
-      const recipeReq = await fetch(`https://api.spoonacular.com/recipes/${id}/information?apiKey=af2df378cede4a1a96a1c5b9af315c8d`);
+      const recipeReq = await fetch(`https://api.spoonacular.com/recipes/${id}/information?apiKey=dcc7904ab8df4f84b3ec4be84eee706a`);
       const recipeRes = await recipeReq.json();
       setRecipeData(recipeRes);
     };
