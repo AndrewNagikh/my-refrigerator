@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
+
+import { useParams } from 'react-router-dom';
 /* eslint-disable react/prop-types */
 
 function OneMeal() {
+  const params = useParams();
   const [ThisRec, setThisRec] = useState({});
   const [Ingr, setIngr] = useState({});
   const apiKey = 'dcc7904ab8df4f84b3ec4be84eee706a';
   // const apiKey = '3f8c71044afe46a1a3cae029bb6d7832';
   // fetch запрос от сервера
-  const id = '1';
+  const { id } = params;
   const url = `https://api.spoonacular.com/recipes/${id}/information?apiKey=${apiKey}`;
   const urlIngr = `https://api.spoonacular.com/recipes/${id}/ingredientWidget.json?apiKey=${apiKey}`;
   const options = {
@@ -44,12 +47,9 @@ function OneMeal() {
         timeOfCook: recipeDef.readyInMinutes,
         servings: recipeDef.servings,
         image: recipeDef.image,
-        instructions: recipeDef.instructions,
+        instructions: recipeDef.instructions.replace(/<\/?[^>]+(>|$)/g, ''),
         analyzedInstructions: recipeDef.analyzedInstructions,
       };
-
-      console.log(recipe);
-      console.log(recipeDefIngr);
 
       setIngr(recipeDefIngr);
       setThisRec(recipe);
@@ -68,9 +68,8 @@ function OneMeal() {
 
   return (
     <div>
-      {console.log(Ingr)}
       <div className="flex-card-info">
-        <div className="card-info card flex-card-info p-3">
+        <div>
           <div className="card-body-info">
             <div className="img-title-flex">
               <div>

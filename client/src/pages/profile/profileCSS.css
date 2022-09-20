@@ -1,0 +1,61 @@
+.wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0;
+    padding: 20px;
+}
+
+.user {
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.icon_name {
+    display: flex;
+    align-items: center;
+}
+
+.icon {
+    height: 50px;
+    margin-right: 16px;
+    width: 50px;
+    background-image: url('https://dl.memuplay.com/new_market/img/com.vicman.newprofilepic.icon.2022-06-07-21-33-07.png');
+    border-radius: 50%;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-right: 16px;
+    background-color: #e5efd9;
+}
+
+.name {
+    font-size: 25px;
+}
+
+.social {
+    margin-bottom: 10px;
+}
+
+.vk, .odnoklassniki, .telegram {
+    margin-top: 8px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    flex-grow: 2;
+    height: 48px;
+}
+
+input {
+    flex-grow: 2;
+    padding: 0 16px;
+    border: 0;
+    outline: 0;
+    background-color: inherit;
+}
