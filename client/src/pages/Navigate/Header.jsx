@@ -2,12 +2,10 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import {
   Routes, Link, Route, Navigate, useLocation,
 } from 'react-router-dom';
-import { useGoogleLogout } from 'react-google-login';
-import { logoutUser } from '../../store/action';
 import './nav.css';
 
 function Header() {
@@ -15,20 +13,6 @@ function Header() {
   const userName = useSelector((store) => store.user.login);
   const cuisines = useSelector((store) => store.cuisines);
   const types = useSelector((store) => store.types);
-  const dispatch = useDispatch();
-  const { signOut } = useGoogleLogout({
-    clientId: '732344056543-jeo72mj73978okpth0nr3k1mrlpl19ac.apps.googleusercontent.com',
-  });
-
-  const logoutHandler = async () => {
-    signOut();
-    const req = await fetch('http://localhost:3100/api/v1/logout', {
-      credentials: 'include',
-      method: 'GET',
-      headers: { 'Content-type': 'application/json' },
-    });
-    if (req.status === 200) dispatch(logoutUser());
-  };
 
   return (
     <nav className="navbar">
@@ -50,11 +34,8 @@ function Header() {
                     <span data-bs-toggle="offcanvas">
                       <Link to="/profile">
                         {userName}
-                        {' '}
-                        |
                       </Link>
                     </span>
-                    <Link onClick={logoutHandler} data-bs-toggle="offcanvas">| Logout</Link>
                   </div>
                 )
                 : (
