@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import FormSearch from '../../components/FormSearch';
+import FormSearch from '../../Components/formSearch/FormSearch';
 import RecipeCard from '../../Components/RecipeCard';
 import './homeCSS.css';
 

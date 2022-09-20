@@ -9,9 +9,11 @@ import {
 import './nav.css';
 
 function Header() {
-  const isAuth = true;
+  const isAuth = useSelector((store) => store.isAuth);
+  const userName = useSelector((store) => store.user.login);
   const cuisines = useSelector((store) => store.cuisines);
   const types = useSelector((store) => store.types);
+
   return (
     <nav className="navbar">
       <div className="container-fluid">
@@ -29,10 +31,19 @@ function Header() {
                       <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
                       <path fillRule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
                     </svg>
-                    <Link to="/profile">UserName</Link>
+                    <span data-bs-toggle="offcanvas">
+                      <Link to="/profile">
+                        {userName}
+                      </Link>
+                    </span>
                   </div>
                 )
-                : <Link to="/auth">Войти</Link>}
+                : (
+                  <div className="profLink">
+                    <span data-bs-toggle="offcanvas"><Link to="/login">Login |</Link></span>
+                    <span data-bs-toggle="offcanvas"><Link to="/registration">| Registration</Link></span>
+                  </div>
+                )}
             </h5>
             <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" />
           </div>

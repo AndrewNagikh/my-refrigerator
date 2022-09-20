@@ -6,8 +6,11 @@ const morgan = require('morgan');
 const express = require('express');
 const session = require('express-session');
 const FileStore = require('session-file-store')(session);
+const cors = require('cors');
 
 // const { sequelize } = require('../db/models');
+
+const authRoutes = require('./routes/authRoutes');
 
 const app = express();
 
@@ -20,8 +23,14 @@ app.use(express.urlencoded({ extended: true }));
 // Выносим порт в .env и на всякий случай подставляем дефолтный через ||
 const { PORT, SESSION_SECRET } = process.env;
 
+const corsOptions = {
+  credentials: true,
+  origin: 'http://localhost:3000', // адрес сервера React
+};
+app.use(cors(corsOptions));
+
 const sessionConfig = {
-  name: 'your coockie name',
+  name: 'auth',
   store: new FileStore(),
   secret: SESSION_SECRET ?? 'your key',
   resave: false,
@@ -33,6 +42,8 @@ const sessionConfig = {
 };
 
 app.use(session(sessionConfig));
+
+app.use('/api/v1', authRoutes);
 
 app.listen(PORT, async () => {
   try {
