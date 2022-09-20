@@ -2,16 +2,34 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   Routes, Link, Route, Navigate, useLocation,
 } from 'react-router-dom';
+import { useGoogleLogout } from 'react-google-login';
+import { logoutUser } from '../../store/action';
 import './nav.css';
 
 function Header() {
-  const isAuth = true;
+  const isAuth = useSelector((store) => store.isAuth);
+  const userName = useSelector((store) => store.user.login);
   const cuisines = useSelector((store) => store.cuisines);
   const types = useSelector((store) => store.types);
+  const dispatch = useDispatch();
+  const { signOut } = useGoogleLogout({
+    clientId: '732344056543-jeo72mj73978okpth0nr3k1mrlpl19ac.apps.googleusercontent.com',
+  });
+
+  const logoutHandler = async () => {
+    signOut();
+    const req = await fetch('http://localhost:3100/api/v1/logout', {
+      credentials: 'include',
+      method: 'GET',
+      headers: { 'Content-type': 'application/json' },
+    });
+    if (req.status === 200) dispatch(logoutUser());
+  };
+
   return (
     <nav className="navbar">
       <div className="container-fluid">
@@ -29,10 +47,22 @@ function Header() {
                       <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
                       <path fillRule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
                     </svg>
-                    <span data-bs-dismiss="offcanvas"><Link to="/profile">UserName</Link></span>
+                    <span data-bs-toggle="offcanvas">
+                      <Link to="/profile">
+                        {userName}
+                        {' '}
+                        |
+                      </Link>
+                    </span>
+                    <Link onClick={logoutHandler} data-bs-toggle="offcanvas">| Logout</Link>
                   </div>
                 )
-                : <Link to="/auth" className="dropdown-item">Войти</Link>}
+                : (
+                  <div className="profLink">
+                    <span data-bs-toggle="offcanvas"><Link to="/login">Login |</Link></span>
+                    <span data-bs-toggle="offcanvas"><Link to="/registration">| Registration</Link></span>
+                  </div>
+                )}
             </h5>
             <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" />
           </div>
