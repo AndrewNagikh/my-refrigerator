@@ -8,6 +8,7 @@ const initValues = {
   login: '',
   email: '',
   password: '',
+  imageUrl: '',
 };
 
 const clientId = '732344056543-jeo72mj73978okpth0nr3k1mrlpl19ac.apps.googleusercontent.com';
@@ -17,9 +18,22 @@ function Registration() {
   const [errMessage, setErrMessage] = useState('');
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const onSuccess = (response) => {
-    // console.log('--------------------------------------', response.profileObj);
-    dispatch(setUser(response.profileObj));
+  const onSuccess = async (res) => {
+    const req = await fetch('http://localhost:3100/api/v1/google', {
+      credentials: 'include',
+      method: 'POST',
+      headers: { 'Content-type': 'application/json' },
+      body: JSON.stringify(res.profileObj),
+    });
+    const response = await req.json();
+    // console.log(res);
+    // if (res.message) setErrMessage(res.message);
+    if (response.isSuccess) {
+      dispatch(setUser(res.profileObj));
+      navigate('/');
+    }
+    // console.log('-------------------', res.profileObj);
+    // dispatch(setUser(res.profileObj));
   };
   const onFailure = (res) => {
     setErrMessage(res.error);
