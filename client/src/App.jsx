@@ -50,7 +50,8 @@ function App() {
   return (
     <BrowserRouter>
       <Header />
-      <div className="container-xl">
+      {/* <div className="container-xl"> */}
+      <div className="container-all">
         <Routes>
           <Route path="/" element={<Home />} />
           {/* <Route path="/auth" element={<Auth />} /> */}
