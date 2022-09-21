@@ -50,25 +50,25 @@ function Header() {
           <div className="offcanvas-body">
             <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
               <li className="nav-item" data-bs-dismiss="offcanvas">
-                <Link className="nav-link-text" to="/">На главную</Link>
+                <Link className="nav-link-text" to="/"><span className="link-text">Home</span></Link>
               </li>
               <li className="nav-item" data-bs-dismiss="offcanvas">
-                <Link className="nav-link-text" to="/my-ref">Мой холодильник</Link>
+                <Link className="nav-link-text" to="/my-ref"><span className="link-text">My fridge</span></Link>
               </li>
               <li className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  National cuisine
+                  <span className="link-text">National cuisine</span>
                 </a>
                 <ul className="dropdown-menu nav-link-text">
-                  {cuisines.map((cuisine) => <li data-bs-dismiss="offcanvas" key={cuisine}><Link to={`/cuisine/${cuisine}`} className="dropdown-item">{cuisine}</Link></li>)}
+                  {cuisines.map((cuisine) => <li data-bs-dismiss="offcanvas" key={cuisine}><Link to={`/cuisine/${cuisine}`} className="dropdown-item"><span className="link-text">{cuisine}</span></Link></li>)}
                 </ul>
               </li>
               <li className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Types
+                  <span className="link-text">Types</span>
                 </a>
                 <ul className="dropdown-menu nav-link-text">
-                  {types.map((type) => <li data-bs-dismiss="offcanvas" key={type}><Link to={`/type/${type}`} className="dropdown-item">{type}</Link></li>)}
+                  {types.map((type) => <li data-bs-dismiss="offcanvas" key={type}><Link to={`/type/${type}`} className="dropdown-item"><span className="link-text">{type}</span></Link></li>)}
                 </ul>
               </li>
             </ul>

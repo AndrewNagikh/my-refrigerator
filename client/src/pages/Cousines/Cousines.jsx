@@ -5,11 +5,12 @@ import RecipeCard from '../../Components/RecipeCard';
 import './cousinesCSS.css';
 
 function Cousines() {
+  const apiKey = '3f8c71044afe46a1a3cae029bb6d7832';
   const { cuisine } = useParams();
   const [recipes, setRecipes] = useState({ isLoad: false, recipesList: [] });
   useEffect(() => {
     const getRecipes = async () => {
-      const recipesReq = await fetch(`https://api.spoonacular.com/recipes/complexSearch?cuisine=${cuisine.toLowerCase()}&number=50&addRecipeInformation=true&apiKey=a474cb28455d46ceb257ef9e3a4a72f7`);
+      const recipesReq = await fetch(`https://api.spoonacular.com/recipes/complexSearch?cuisine=${cuisine.toLowerCase()}&number=50&addRecipeInformation=true&apiKey=${apiKey}`);
       const recipesRes = await recipesReq.json();
       setRecipes({ isLoad: true, recipesList: recipesRes.results });
     };

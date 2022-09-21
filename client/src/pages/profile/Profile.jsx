@@ -31,6 +31,9 @@ function Profile() {
     if (req.status === 200) dispatch(logoutUser());
     signOut();
   };
+  useEffect(() => {
+    isAuth ? null : navigate('/');
+  }, []);
   return (
     <div className="wrapper">
       <div className="user">
