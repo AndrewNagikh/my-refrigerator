@@ -9,7 +9,7 @@ function Cousines() {
   const [recipes, setRecipes] = useState({ isLoad: false, recipesList: [] });
   useEffect(() => {
     const getRecipes = async () => {
-      const recipesReq = await fetch(`https://api.spoonacular.com/recipes/complexSearch?cuisine=${cuisine.toLowerCase()}&number=50&addRecipeInformation=true&apiKey=dcc7904ab8df4f84b3ec4be84eee706a`);
+      const recipesReq = await fetch(`https://api.spoonacular.com/recipes/complexSearch?cuisine=${cuisine.toLowerCase()}&number=50&addRecipeInformation=true&apiKey=a474cb28455d46ceb257ef9e3a4a72f7`);
       const recipesRes = await recipesReq.json();
       setRecipes({ isLoad: true, recipesList: recipesRes.results });
     };

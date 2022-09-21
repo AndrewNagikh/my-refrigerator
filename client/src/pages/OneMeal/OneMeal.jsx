@@ -8,7 +8,7 @@ function OneMeal() {
   const params = useParams();
   const [ThisRec, setThisRec] = useState({});
   const [Ingr, setIngr] = useState({});
-  const apiKey = 'dcc7904ab8df4f84b3ec4be84eee706a';
+  const apiKey = 'a474cb28455d46ceb257ef9e3a4a72f7';
   // const apiKey = '3f8c71044afe46a1a3cae029bb6d7832';
   // fetch запрос от сервера
   const { id } = params;

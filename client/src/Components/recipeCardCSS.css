@@ -38,6 +38,15 @@
 	object-fit: cover;
 }
 
+.card-bg-transparent{
+	background-color: #070705c7;
+	z-index:1;
+}
+
+img{
+	z-index:0
+}
+
 .recipe-card h1 {
 	margin: 0 1.5rem 2rem 1.5rem;
 	font-size: 17px;
