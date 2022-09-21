@@ -105,3 +105,6 @@ dist
 
 #Sessions ignore
 sessions
+
+#package-lock
+package-lock.json
