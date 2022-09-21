@@ -57,6 +57,7 @@ const initState = {
     id: null,
     login: '',
     email: '',
+    imageUrl: '',
   },
   isAuth: false,
 };
@@ -77,11 +78,17 @@ export const reducers = (state = initState, action) => {
         id: action.payload.id || action.payload.googleId,
         login: action.payload.login || action.payload.name,
         email: action.payload.email,
+        imageUrl: action.payload.imageUrl || '',
       };
-      console.log(setUser);
       return { ...state, user: setUser, isAuth: true };
     case types.LOGOUT_USER:
-      return { ...state, user: { id: null, login: '', email: '' }, isAuth: false };
+      return {
+        ...state,
+        user: {
+          id: null, login: '', email: '', imageUrl: '',
+        },
+        isAuth: false,
+      };
     default:
       return state;
   }
