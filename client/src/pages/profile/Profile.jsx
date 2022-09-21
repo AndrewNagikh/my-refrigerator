@@ -1,7 +1,8 @@
+/* eslint-disable no-unused-expressions */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import React from 'react';
+import { React, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useGoogleLogout } from 'react-google-login';
 import {
@@ -12,6 +13,7 @@ import './profileCSS.css';
 
 function Profile() {
   const userName = useSelector((store) => store.user.login);
+  const isAuth = useSelector((store) => store.isAuth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const navToMain = () => navigate('/');
@@ -29,6 +31,9 @@ function Profile() {
     if (req.status === 200) dispatch(logoutUser());
     signOut();
   };
+  useEffect(() => {
+    isAuth ? null : navigate('/');
+  }, []);
   return (
     <div className="wrapper">
       <div className="user">

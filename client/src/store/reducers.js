@@ -80,7 +80,6 @@ export const reducers = (state = initState, action) => {
         email: action.payload.email,
         imageUrl: action.payload.imageUrl || '',
       };
-      console.log(setUser);
       return { ...state, user: setUser, isAuth: true };
     case types.LOGOUT_USER:
       return {
