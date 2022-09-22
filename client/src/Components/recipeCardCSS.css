@@ -98,3 +98,33 @@ img{
 	stroke: var(--card-text-color);
 	stroke-opacity: .25;
 }
+
+.btn{
+	width: 100%;
+}
+
+/* .addFavBtn {
+    background-image: url('http://www.w3.org/2000/svg');
+    background-size: cover;
+    width: 40px;
+    height: 40px;
+	z-index: 10;
+}
+
+.addFavBtn:hover {
+    background-image: url('http://www.w3.org/2000/svg');
+	z-index: 10;
+}
+
+.removeFavBtn {
+    background-image: url('http://www.w3.org/2000/svg');
+    background-size: cover;
+    width: 40px;
+    height: 40px;
+	z-index: 10;
+}
+
+.removeFavBtn:hover {
+    background-image: url('http://www.w3.org/2000/svg');
+	z-index: 10;
+} */

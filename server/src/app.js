@@ -11,6 +11,7 @@ const cors = require('cors');
 // const { sequelize } = require('../db/models');
 
 const authRoutes = require('./routes/authRoutes');
+const FavRouter = require('./routers/FavRouter');
 
 const app = express();
 
@@ -44,6 +45,7 @@ const sessionConfig = {
 app.use(session(sessionConfig));
 
 app.use('/api/v1', authRoutes);
+app.use('/api/v1', FavRouter);
 
 app.listen(PORT, async () => {
   try {

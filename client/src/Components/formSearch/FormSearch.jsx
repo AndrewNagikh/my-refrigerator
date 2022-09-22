@@ -26,7 +26,8 @@ export default function FormSearch({ submitHandler }) {
     <div>
       <div>
         <form id="searchForm" className="m20">
-          <input name="search" type="text" className="w-100 form-control" id="exampleInput1" onChange={changeSearchHandler} placeholder="start to find" />
+          {/* ing_input */}
+          <input name="search" type="text" className="w-100 form-control" id="exampleInput1" onChange={changeSearchHandler} placeholder="Start searching by name" />
         </form>
       </div>
     </div>
