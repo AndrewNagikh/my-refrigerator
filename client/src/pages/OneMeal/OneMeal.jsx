@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Loader from '../../Components/Loader';
 import './OneMeal.css';
+import Favorite from '../../Components/favorite/Favorite';
 /* eslint-disable react/prop-types */
 
 function OneMeal() {
@@ -162,7 +163,7 @@ function OneMeal() {
                 </div>
               </div>
               <div>
-                <button id="addToFav" type="button" className="btn btn-light favor" aria-label=" " />
+                <Favorite id={id} className="svg-big" />
               </div>
             </div>
           </div>
