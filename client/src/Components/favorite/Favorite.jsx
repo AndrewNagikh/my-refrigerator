@@ -12,16 +12,20 @@ export default function Favorite({ id }) {
       // если он есть возвращаем fav = true
       // если такой связи нет возвращаем fav = false
       // console.log('id in useEffect', id);
-      const response = await fetch(`http://localhost:3100/api/v1/isFav/${id}`, {
-        method: 'GET',
-        credentials: 'include',
-        headers: { 'Content-type': 'application/json' },
-      });
-      console.log('response', response);
-    //   const result = await response.json();
-    //   const favorite = result.fav;
-    //   console.log('favorite', favorite);
-    //   setFavValue(favorite);
+      try {
+        const response = await fetch(`http://localhost:3100/api/v1/isFav/${id}`, {
+          method: 'GET',
+          credentials: 'include',
+          headers: { 'Content-type': 'application/json' },
+        });
+        console.log('response', response);
+        const result = await response.json();
+        const favorite = result.fav;
+        console.log('favorite', favorite);
+        setFavValue(favorite);
+      } catch (error) {
+        console.log('check fromt error', error);
+      }
     };
     getRecipe();
   }, [id]);
@@ -39,7 +43,7 @@ export default function Favorite({ id }) {
     }
   };
   return favValue != null
-    ? <ViewFavorite fav={favorite} onToggle={onToggle} />
+    ? <ViewFavorite fav={favValue} onToggle={onToggle} />
     : <span>loading</span>;
 }
 
