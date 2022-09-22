@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+/* eslint-disable no-unused-expressions */
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { GoogleLogin } from 'react-google-login';
 import { useNavigate } from 'react-router-dom';
@@ -16,6 +17,9 @@ function Login() {
   const [errMessage, setErrMessage] = useState('');
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  useEffect(() => {
+    JSON.parse(localStorage.getItem('isAuth')) ? navigate('/') : null;
+  }, []);
   const onSuccess = async (res) => {
     const req = await fetch('http://localhost:3100/api/v1/google', {
       credentials: 'include',
@@ -24,14 +28,11 @@ function Login() {
       body: JSON.stringify(res.profileObj),
     });
     const response = await req.json();
-    // console.log(res);
-    // if (res.message) setErrMessage(res.message);
-    if (response.isSuccess) {
-      dispatch(setUser(res.profileObj));
+    if (response.id) {
+      dispatch(setUser(response));
+      localStorage.setItem('isAuth', JSON.stringify(true));
       navigate('/');
     }
-    // console.log('-------------------', res.profileObj);
-    // dispatch(setUser(res.profileObj));
   };
   const onFailure = (res) => {
     setErrMessage(res.error);
@@ -53,6 +54,7 @@ function Login() {
     if (res.message) setErrMessage(res.message);
     if (res.id) {
       dispatch(setUser(res));
+      localStorage.setItem('isAuth', JSON.stringify(true));
       navigate('/');
     }
   };
@@ -85,14 +87,6 @@ function Login() {
         // eslint-disable-next-line react/jsx-boolean-value
         isSignedIn={true}
       />
-      {/* <GoogleLogin
-          onSuccess={(credentialResponse) => {
-            console.log(credentialResponse);
-          }}
-          onError={() => {
-            console.log('Login Failed');
-          }}
-        /> */}
     </form>
   );
 }

@@ -1,10 +1,12 @@
 /* eslint-disable no-alert */
 /* eslint-disable max-len */
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import RecipeCard from '../../Components/RecipeCard';
 import './mealPlanCSS.css';
 
 function MealPlan() {
+  const userId = useSelector((store) => store.user.id);
   const apiKey = 'aa844e1894b74bc2a3e672c59f887e64';
   const [options, setOptions] = useState({ diet: '', time: '', calories: '' });
   const [recipes, setRecipes] = useState({ meals: [], nutrients: {} });
@@ -15,9 +17,21 @@ function MealPlan() {
     if (options.calories && options.diet && options.time) {
       const recipeReq = await fetch(`https://api.spoonacular.com/mealplanner/generate?timeFrame=${options.time}&targetCalories=${options.calories}&diet=${options.diet}&apiKey=${apiKey}`);
       const recipeRes = await recipeReq.json();
+      console.log(recipeRes.meals);
       setRecipes({ meals: recipeRes.meals, nutrients: recipeRes.nutrients });
     } else {
       alert('Set all options');
+    }
+  };
+  const saveMealPlan = async () => {
+    const saveMealReq = await fetch('http://localhost:3100/api/v1/mealSave', {
+      credentials: 'include',
+      method: 'POST',
+      headers: { 'Content-type': 'application/json' },
+      body: JSON.stringify({ userId, meals: recipes.meals }),
+    });
+    if (saveMealReq.status === 200) {
+      alert('This meal plan added to your profile');
     }
   };
   return (
@@ -51,6 +65,13 @@ function MealPlan() {
         <span className="text">Set All Options</span>
         <span>Get meal plan!</span>
       </button>
+      {recipes.meals.length >= 1 ? (
+        <button type="button" className="save-btn" onClick={saveMealPlan}>
+          Did you like this plan?
+          {' '}
+          <span>Save It!</span>
+        </button>
+      ) : null}
       <div className="recipes">
         {recipes.meals.map((recipe) => <RecipeCard id={recipe.id} url={`https://spoonacular.com/recipeImages/${recipe.id}-556x370.jpg`} title={recipe.title} summary={recipe.summary} dishType="dish type" preparationMinutes={recipe.readyInMinutes} key={recipe.id} />)}
       </div>

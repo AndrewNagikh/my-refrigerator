@@ -71,5 +71,26 @@ input.social-input {
 }
 
 .tabs {
+    width: 100%;
     display: flex;
+    justify-content: space-around;
+}
+
+h2.non-active {
+    padding: 10px;
+}
+
+h2.active {
+    transition: 0.3s ease-in;
+    padding: 10px;
+    background-color: #BB5274;
+    color: white;
+    border-radius: 8px;
+}
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
 }

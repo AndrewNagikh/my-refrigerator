@@ -1,10 +1,12 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable no-tabs */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import { React, useEffect } from 'react';
+import { React, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useGoogleLogout } from 'react-google-login';
 import {
@@ -12,8 +14,13 @@ import {
 } from 'react-router-dom';
 import { logoutUser } from '../../store/action';
 import './profileCSS.css';
+import RecipeCard from '../../Components/RecipeCard';
 
 function Profile() {
+  const userId = useSelector((store) => store.user.id);
+  const [fav, setFav] = useState('non-active');
+  const [meal, setMeal] = useState('non-active');
+  const [mealData, setMealData] = useState([]);
   const userName = useSelector((store) => store.user.login);
   const userIcon = useSelector((store) => store.user.imageUrl);
   const isAuth = useSelector((store) => store.isAuth);
@@ -25,6 +32,23 @@ function Profile() {
     onLogoutSuccess: navToMain,
   });
 
+  const favClick = () => {
+    setFav('active');
+    setMeal('non-active');
+  };
+  const mealClick = async () => {
+    setFav('non-active');
+    setMeal('active');
+    const getMealReq = await fetch('http://localhost:3100/api/v1/mealSave/get', {
+      credentials: 'include',
+      method: 'POST',
+      headers: { 'Content-type': 'application/json' },
+      body: JSON.stringify({ userId }),
+    });
+    const getMealRes = await getMealReq.json();
+    setMealData(getMealRes);
+  };
+
   const logoutHandler = async () => {
     const req = await fetch('http://localhost:3100/api/v1/logout', {
       credentials: 'include',
@@ -33,9 +57,10 @@ function Profile() {
     });
     if (req.status === 200) dispatch(logoutUser());
     signOut();
+    localStorage.removeItem('isAuth');
   };
   useEffect(() => {
-    isAuth ? null : navigate('/');
+    JSON.parse(localStorage.getItem('isAuth')) ? null : navigate('/');
   }, []);
   return (
     <div className="wrapper">
@@ -74,8 +99,11 @@ function Profile() {
         </div>
       </div>
       <div className="tabs">
-        <h2>Favourites</h2>
-        <h2>My meal plan</h2>
+        <h2 onClick={favClick} className={fav}>Favourites</h2>
+        <h2 onClick={mealClick} className={meal}>My meal plan</h2>
+      </div>
+      <div className="content">
+        {fav === 'active' ? 'fav' : mealData.map((meals) => <RecipeCard id={meals.id} url={`https://spoonacular.com/recipeImages/${meals.id}-556x370.jpg`} title={meals.title} summary={meals.summary} dishType="dish type" preparationMinutes={meals.readyInMinutes} key={meals.id} />)}
       </div>
     </div>
   );

@@ -59,7 +59,6 @@ const initState = {
     email: '',
     imageUrl: '',
   },
-  isAuth: false,
 };
 
 export const reducers = (state = initState, action) => {
@@ -75,19 +74,18 @@ export const reducers = (state = initState, action) => {
       // eslint-disable-next-line no-case-declarations
       const setUser = {
         ...state.user,
-        id: action.payload.id || action.payload.googleId,
-        login: action.payload.login || action.payload.name,
+        id: action.payload.id,
+        login: action.payload.login,
         email: action.payload.email,
         imageUrl: action.payload.imageUrl || '',
       };
-      return { ...state, user: setUser, isAuth: true };
+      return { ...state, user: setUser };
     case types.LOGOUT_USER:
       return {
         ...state,
         user: {
           id: null, login: '', email: '', imageUrl: '',
         },
-        isAuth: false,
       };
     default:
       return state;
