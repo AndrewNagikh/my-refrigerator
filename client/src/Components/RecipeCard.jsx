@@ -17,7 +17,7 @@ function RecipeCard({
       </figure>
 
       <div className="card-meta">
-        <p className="dish-type">{dishType}</p>
+        <p className="dish-type">{dishType || 'dish type'}</p>
 
         <ul className="dish-stats">
           <li>

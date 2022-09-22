@@ -18,14 +18,21 @@ async function checkFav(req, res) {
 }
 
 async function toggleFav(req, res) {
-  const { id } = req.params;
-  const findFav = await UserFav.findOne({ where: { recipe_id: id, user_id: user_id_session } });
-  if (findFav) {
-    await UserFav.destroy({ where: { recipe_id: id, user_id: user_id_session } });
-    res.status(200).json({ fav: false });
+  try {
+    const { id } = req.params;
+    const userId = req.session?.userId;
+    const findFav = await UserFav.findOne({ where: { recipe_id: id, user_id: userId } });
+    if (findFav) {
+      await UserFav.destroy({ where: { recipe_id: id, user_id: userId } });
+      res.status(200).json({ fav: false });
+    }
+    if (!findFav) {
+      await UserFav.create({ recipe_id: id, user_id: userId });
+      res.status(200).json({ fav: true });
+    }
+  } catch (error) {
+    console.log('check back error', error);
   }
-  await UserFav.create({ where: { recipe_id: id, user_id: user_id_session } });
-  if (!findFav) { res.status(200).json({ fav: true }); }
 }
 
 module.exports = {

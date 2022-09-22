@@ -12,7 +12,7 @@ import './refCss.css';
 import RecipeCard from '../../Components/RecipeCard';
 
 function Refrigirator() {
-  const apiKey = '3f8c71044afe46a1a3cae029bb6d7832';
+  const apiKey = 'aa844e1894b74bc2a3e672c59f887e64';
   const dispath = useDispatch();
   const [ingridientsValue, setingridientsValue] = useState({ ingridient: '' });
   const [ingridients, setIngridients] = useState({ isLoad: false, ingridients: [] });

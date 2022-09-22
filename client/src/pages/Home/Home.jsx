@@ -52,6 +52,7 @@ export default function Home() {
         readyInMinutes: recipe.readyInMinutes,
         servings: recipe.servings,
         summary: recipe.summary,
+        likes: recipe.likes,
         dishType: recipe.dishTypes.at(0),
         fav: false,
       }));
