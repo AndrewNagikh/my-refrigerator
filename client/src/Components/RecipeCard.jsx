@@ -35,7 +35,7 @@ function RecipeCard({
             {likes}
           </li>
           <li>
-            <Favorite id={id} />
+            <Favorite id={id} className="svg-small" />
           </li>
         </ul>
       </div>
