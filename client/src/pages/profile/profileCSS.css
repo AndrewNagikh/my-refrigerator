@@ -1,3 +1,14 @@
+:root {
+	--primary-color: #185ee0;
+	--secondary-color: #e6eef9;
+}
+
+*,
+*:after,
+*:before {
+	box-sizing: border-box;
+}
+
 .wrapper {
     width: 100%;
     display: flex;
@@ -24,7 +35,6 @@
     height: 50px;
     margin-right: 16px;
     width: 50px;
-    background-image: url('https://dl.memuplay.com/new_market/img/com.vicman.newprofilepic.icon.2022-06-07-21-33-07.png');
     border-radius: 50%;
     background-position: 50%;
     background-repeat: no-repeat;
@@ -52,10 +62,35 @@
     height: 48px;
 }
 
-input {
+input.social-input {
     flex-grow: 2;
     padding: 0 16px;
     border: 0;
     outline: 0;
     background-color: inherit;
+}
+
+.tabs {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+h2.non-active {
+    padding: 10px;
+}
+
+h2.active {
+    transition: 0.3s ease-in;
+    padding: 10px;
+    background-color: #BB5274;
+    color: white;
+    border-radius: 8px;
+}
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
 }

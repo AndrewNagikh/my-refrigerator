@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 // import { useState, useEffect } from 'react';
 import FormSearch from '../../Components/formSearch/FormSearch';
@@ -57,7 +58,6 @@ export default function Home() {
     //   }));
     // const rec = await Promise.all(recipesProm);
     // setReciepes(rec);
-    console.log('recipes ', rec);
   };
 
   return (
