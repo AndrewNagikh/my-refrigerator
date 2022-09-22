@@ -15,7 +15,7 @@ export const recipes = [
     image: 'https://spoonacular.com/recipeImages/643633-312x231.jpg',
     readyInMinutes: 60,
     servings: 4,
-    dishType: 'main dish',
+    dishType: 'lunch',
     likes: 70,
   },
   {
@@ -42,7 +42,7 @@ export const recipes = [
     image: 'https://spoonacular.com/recipeImages/633852-312x231.jpg',
     readyInMinutes: 50,
     servings: 4,
-    dishType: 'main dish',
+    dishType: 'lunch',
     likes: 30,
   },
   {
@@ -60,7 +60,7 @@ export const recipes = [
     image: 'https://spoonacular.com/recipeImages/633852-312x231.jpg',
     readyInMinutes: 55,
     servings: 6,
-    dishType: 'main dish',
+    dishType: 'lunch',
     likes: 55,
   },
   {
@@ -78,7 +78,7 @@ export const recipes = [
     image: 'https://spoonacular.com/recipeImages/633852-312x231.jpg',
     readyInMinutes: 120,
     servings: 6,
-    dishType: 'main dish',
+    dishType: 'lunch',
     likes: 230,
   },
 ];
