@@ -14,6 +14,7 @@ import Login from './pages/Login/Login';
 import Registration from './pages/Registration/Registration';
 import Profile from './pages/profile/Profile';
 import Home from './pages/Home/Home';
+import MealPlan from './pages/MealPlan/MealPlan';
 
 const clientId = '732344056543-jeo72mj73978okpth0nr3k1mrlpl19ac.apps.googleusercontent.com';
 
@@ -62,6 +63,7 @@ function App() {
           <Route path="/my-ref" element={<Refrigirator />} />
           <Route path="/cuisine/:cuisine" element={<Cousines />} />
           <Route path="/type/:type" element={<Types />} />
+          <Route path="/mealPlan" element={<MealPlan />} />
         </Routes>
       </div>
       <div hidden>

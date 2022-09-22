@@ -5,7 +5,7 @@ import RecipeCard from '../../Components/RecipeCard';
 import './cousinesCSS.css';
 
 function Cousines() {
-  const apiKey = '3f8c71044afe46a1a3cae029bb6d7832';
+  const apiKey = 'aa844e1894b74bc2a3e672c59f887e64';
   const { cuisine } = useParams();
   const [recipes, setRecipes] = useState({ isLoad: false, recipesList: [] });
   useEffect(() => {

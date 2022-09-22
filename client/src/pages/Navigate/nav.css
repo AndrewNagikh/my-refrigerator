@@ -54,3 +54,20 @@
     margin-right: 16px;
     background-color: #e5efd9;
 }
+
+.navbar-brand {
+    font-size: 25px;
+    letter-spacing: 2px;
+}
+
+.icon {
+    height: 16px;
+    margin-right: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-right: 16px;
+    background-color: #e5efd9;
+}

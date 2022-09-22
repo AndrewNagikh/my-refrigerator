@@ -11,6 +11,7 @@ import './nav.css';
 function Header() {
   const isAuth = useSelector((store) => store.isAuth);
   const userName = useSelector((store) => store.user.login);
+  const userIcon = useSelector((store) => store.user.imageUrl);
   const cuisines = useSelector((store) => store.cuisines);
   const types = useSelector((store) => store.types);
 
@@ -18,7 +19,7 @@ function Header() {
     <nav className="navbar">
       <div className="container-fluid">
         <img src="/img/logo.png" className="logo" alt="..." />
-        <p className="navbar-brand">Mr.Frdge</p>
+        <p className="navbar-brand">Mr.Fridge</p>
         <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
           <span className="navbar-toggler-icon" />
         </button>
@@ -28,10 +29,7 @@ function Header() {
               {isAuth
                 ? (
                   <div className="profLink">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" className="bi bi-person-circle" viewBox="0 0 16 16">
-                      <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                      <path fillRule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
-                    </svg>
+                    <div className="icon" style={{ backgroundImage: `url(${userIcon})` }} />
                     <span data-bs-toggle="offcanvas">
                       <Link to="/profile">
                         {userName}
@@ -55,6 +53,9 @@ function Header() {
               </li>
               <li className="nav-item" data-bs-dismiss="offcanvas">
                 <Link className="nav-link-text" to="/my-ref"><span className="link-text">My fridge</span></Link>
+              </li>
+              <li className="nav-item" data-bs-dismiss="offcanvas">
+                <Link className="nav-link-text" to="/mealPlan"><span className="link-text">Get meal plan</span></Link>
               </li>
               <li className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
