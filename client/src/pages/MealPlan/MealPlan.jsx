@@ -36,7 +36,7 @@ function MealPlan() {
   };
   return (
     <div className="wrapper">
-      <h1>Meal Planer</h1>
+      <h1 className="title">Meal Planer</h1>
       <div className="options">
         <div className="select">
           <select name="diet" id="diet" onChange={cangeHandler}>

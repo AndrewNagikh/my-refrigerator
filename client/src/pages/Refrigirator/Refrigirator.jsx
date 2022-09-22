@@ -92,7 +92,7 @@ function Refrigirator() {
         </div>
       </div>
       <h2 className="title">Get the recipes</h2>
-      <h3>{recipes.length > 0 ? '10 recipes sorted by quantity of ingredients' : 'Here would be 10 recipes sorted by quantity of ingredients'}</h3>
+      <h3 className="title">{recipes.length > 0 ? '10 recipes sorted by quantity of ingredients' : 'Here would be 10 recipes sorted by quantity of ingredients'}</h3>
       <div className="recipes col-md-12">
         <div className="recipes">
           {recipes.map((recipe) => <RecipeCard id={recipe.id} url={recipe.image} title={recipe.title} summary={recipe.summary} dishType={recipe.dishTypes.at(0)} preparationMinutes={recipe.readyInMinutes} key={recipe.id} />)}

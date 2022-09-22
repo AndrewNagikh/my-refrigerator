@@ -1,8 +1,5 @@
 @import '../cssVariables.css';
 
-* {
-    font-family: 'Roboto';
-}
 
 .wrapper {
     width: 100%;
@@ -28,6 +25,7 @@
 
 .title {
     text-align: center;
+    font-family: 'Playfair Display'; 
 }
 
 .ingridients {

@@ -18,7 +18,7 @@ function Header() {
   return (
     <nav className="navbar">
       <div className="container-fluid">
-        <img src="/img/logo.png" className="logo" alt="..." />
+        <img src="/img/125663.png" className="logo" alt="..." />
         <p className="navbar-brand">Mr.Fridge</p>
         <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
           <span className="navbar-toggler-icon" />
