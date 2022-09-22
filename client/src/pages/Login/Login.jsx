@@ -73,11 +73,12 @@ function Login() {
           <input onChange={changeHandler} name="password" value={inputValue.password} type="password" className="form-control" id="inputPassword2" required />
         </label>
       </div>
-      <button type="submit" className="btn btn-primary">Login</button>
+      <button type="submit" className="btn btn-lg btn-secondary">Login</button>
       <div>
         {errMessage}
       </div>
       <GoogleLogin
+        className="btn google"
         clientId={clientId}
         buttonText="Login with Google"
         onSuccess={onSuccess}

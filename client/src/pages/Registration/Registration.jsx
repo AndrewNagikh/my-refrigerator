@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { GoogleLogin } from 'react-google-login';
 import { useNavigate } from 'react-router-dom';
 import { setUser } from '../../store/action';
+import './reg.css';
 
 const initValues = {
   login: '',
@@ -82,12 +83,13 @@ function Registration() {
             <input onChange={changeHandler} name="password" value={inputValue.password} type="password" className="form-control" id="inputPassword" required />
           </label>
         </div>
-        <button type="submit" className="btn btn-lg btn-primary btn-block">Register</button>
+        <button className="btn btn-lg btn-secondary" type="submit">Register</button>
         <div>
           {errMessage}
         </div>
       </form>
       <GoogleLogin
+        className="btn google"
         clientId={clientId}
         buttonText="Login with Google"
         onSuccess={onSuccess}
