@@ -45,7 +45,6 @@ router.post('/login', async (req, res) => {
     req.session.save(() => {
       if (passCheck) {
         res.status(200).json(user);
-        // setTimeout(() => res.redirect('http://localhost:3000'), 1000);
       }
     });
   } catch (error) {
@@ -84,8 +83,9 @@ router.post('/google', async (req, res) => {
     if (!user) {
       await User.create({ login: name, email, imageUrl });
     }
+    req.session.userId = user.id;
     req.session.save(() => {
-      res.status(200).json({ isSuccess: true });
+      res.status(200).json(user);
     });
     // } else {
     //   res.sendStatus(400);
