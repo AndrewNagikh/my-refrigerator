@@ -1,0 +1,52 @@
+.masivelyscal-edupversion {
+    margin: 15px 0;
+    border: 2px solid #fdfdfd;
+    width: 100%;
+    padding: 12px;
+    display: table;
+    background: #cecece;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0px 3px 7px rgba(97, 91, 91, 0.31), 0px 9px 28px -12px rgba(29, 28, 28, 0.24);
+  }
+  
+  .masivelyscal-edupversion .derukan {
+    display: table-cell;
+    vertical-align: top;
+    width: 60px;
+    padding: 12px 12px 0 0;
+    text-align:center;
+  }
+  .masivelyscal-edupversion .derukan i,
+  .masivelyscal-edupversion .derukan img {
+    font-size:29.8px;
+    color: #3f8dce;
+    transition: all .4s;
+    width: 31px;
+    height: 31px;
+  }
+  .masivelyscal-edupversion .derukan img {
+    opacity: .8;
+  }
+  .masivelyscal-edupversion:hover .derukan i,
+  .masivelyscal-edupversion:hover .derukan img {
+    font-size:48px;
+    color: #246faf;
+    transform: rotate(-360deg);
+    width: 47px;
+    height: 47px;
+    opacity: 1;
+  }
+  .masivelyscal-edupversion h3 {
+    transition: all 0.5s ease 0s;
+    color: #11548e;
+    font-size: 19px;
+    margin: 5px 0;
+  }  
+  .masivelyscal-edupversion:hover h3 {
+    color: #171616;
+  }  
+  
+  .demons-tratiprowes {  
+    width: 29%;  
+  }

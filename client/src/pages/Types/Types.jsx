@@ -8,7 +8,7 @@ function Types() {
   const [recipes, setRecipes] = useState({ isLoad: false, recipesList: [] });
   useEffect(() => {
     const getRecipes = async () => {
-      const recipesReq = await fetch(`https://api.spoonacular.com/recipes/complexSearch?type=${type}&number=50&addRecipeInformation=true&apiKey=dcc7904ab8df4f84b3ec4be84eee706a`);
+      const recipesReq = await fetch(`https://api.spoonacular.com/recipes/complexSearch?type=${type}&number=50&addRecipeInformation=true&apiKey=337ec7d8808c4c8a8c29b18a585b6352`);
       const recipesRes = await recipesReq.json();
       setRecipes({ isLoad: true, recipesList: recipesRes.results });
     };

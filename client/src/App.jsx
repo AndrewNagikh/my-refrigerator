@@ -10,6 +10,7 @@ import Cousines from './pages/Cousines/Cousines';
 import Types from './pages/Types/Types';
 import Refrigirator from './pages/Refrigirator/Refrigirator';
 import OneMeal from './pages/OneMeal/OneMeal';
+// import Testik from './pages/Testik/Testik';
 import Login from './pages/Login/Login';
 import Registration from './pages/Registration/Registration';
 import Profile from './pages/profile/Profile';
