@@ -9,7 +9,7 @@ import {
 import './nav.css';
 
 function Header() {
-  const isAuth = useSelector((store) => store.isAuth);
+  const isAuth = JSON.parse(localStorage.getItem('isAuth'));
   const userName = useSelector((store) => store.user.login);
   const cuisines = useSelector((store) => store.cuisines);
   const types = useSelector((store) => store.types);

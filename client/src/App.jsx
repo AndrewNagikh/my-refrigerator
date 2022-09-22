@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import {
+  BrowserRouter, Routes, Route,
+} from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { GoogleLogin } from 'react-google-login';
 import { gapi } from 'gapi-script';
@@ -24,10 +26,8 @@ function App() {
       credentials: 'include',
       method: 'GET',
       headers: { 'Content-type': 'application/json' },
-      // body: JSON.stringify(input),
     });
     const res = await req.json();
-    // console.log(res);
     if (req.status === 200) dispatch(setUser(res));
   };
   useEffect(() => {
@@ -54,7 +54,6 @@ function App() {
       <div className="container-all">
         <Routes>
           <Route path="/" element={<Home />} />
-          {/* <Route path="/auth" element={<Auth />} /> */}
           <Route path="/profile" element={<Profile />} />
           <Route path="/login" element={<Login />} />
           <Route path="/registration" element={<Registration />} />

@@ -13,7 +13,6 @@ import './profileCSS.css';
 
 function Profile() {
   const userName = useSelector((store) => store.user.login);
-  const isAuth = useSelector((store) => store.isAuth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const navToMain = () => navigate('/');
@@ -30,9 +29,10 @@ function Profile() {
     });
     if (req.status === 200) dispatch(logoutUser());
     signOut();
+    localStorage.removeItem('isAuth');
   };
   useEffect(() => {
-    isAuth ? null : navigate('/');
+    JSON.parse(localStorage.getItem('isAuth')) ? null : navigate('/');
   }, []);
   return (
     <div className="wrapper">
