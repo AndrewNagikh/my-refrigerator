@@ -28,8 +28,8 @@ function Login() {
       body: JSON.stringify(res.profileObj),
     });
     const response = await req.json();
-    if (response.isSuccess) {
-      dispatch(setUser(res.profileObj));
+    if (response.id) {
+      dispatch(setUser(response));
       localStorage.setItem('isAuth', JSON.stringify(true));
       navigate('/');
     }

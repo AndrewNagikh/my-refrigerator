@@ -3,7 +3,6 @@ import {
   BrowserRouter, Routes, Route,
 } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { GoogleLogin } from 'react-google-login';
 import { gapi } from 'gapi-script';
 import { setUser } from './store/action';
 import Header from './pages/Navigate/Header';
@@ -42,10 +41,6 @@ function App() {
     }
     gapi.load('client:auth2', start);
   });
-  const onSuccess = (response) => {
-    // console.log('--------------------------------------', response.profileObj);
-    dispatch(setUser(response.profileObj));
-  };
 
   return (
     <BrowserRouter>
@@ -62,13 +57,6 @@ function App() {
           <Route path="/cuisine/:cuisine" element={<Cousines />} />
           <Route path="/type/:type" element={<Types />} />
         </Routes>
-      </div>
-      <div hidden>
-        <GoogleLogin
-          clientId={clientId}
-          onSuccess={onSuccess}
-          isSignedIn
-        />
       </div>
     </BrowserRouter>
   );
