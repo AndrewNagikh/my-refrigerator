@@ -18,7 +18,12 @@ router.post('/mealSave', async (req, res) => {
   try {
     const { userId, meals } = req.body;
     const meal = JSON.stringify(meals);
-    await Meals.create({ userId, meal });
+    const userMeal = await Meals.findOne({ where: { userId } });
+    if (userMeal) {
+      await userMeal.update({ userId, meal });
+    } else {
+      await Meals.create({ userId, meal });
+    }
     res.sendStatus(200);
   } catch (error) {
     console.log(error);
