@@ -19,11 +19,9 @@ function Refrigirator() {
   const [recipes, setRecipes] = useState([]);
   const ingCash = useSelector((store) => store.ingCash);
   const fridge = useSelector((store) => store.fridge);
-  //------------------------------------------------------------------------
   let handleChange = (event) => {
     setingridientsValue({ ...ingridientsValue, [event.target.name]: event.target.value });
   };
-  //------------------------------------------------------------------------
   const debounce = (fn, ms) => {
     let timeout;
     return function () {
@@ -33,7 +31,6 @@ function Refrigirator() {
     };
   };
   handleChange = debounce(handleChange, 1000);
-  //------------------------------------------------------------------------
   useEffect(() => {
     const getIngridients = async () => {
       if (ingridientsValue.ingridient) {
@@ -63,7 +60,6 @@ function Refrigirator() {
     };
     getRecipes();
   }, [fridge]);
-  //------------------------------------------------------------------------
   return (
     <div className="wrapper">
       <div className="ref-container">
