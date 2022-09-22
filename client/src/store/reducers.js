@@ -59,7 +59,6 @@ const initState = {
     email: '',
     imageUrl: '',
   },
-  isAuth: false,
 };
 
 export const reducers = (state = initState, action) => {
@@ -80,14 +79,13 @@ export const reducers = (state = initState, action) => {
         email: action.payload.email,
         imageUrl: action.payload.imageUrl || '',
       };
-      return { ...state, user: setUser, isAuth: true };
+      return { ...state, user: setUser };
     case types.LOGOUT_USER:
       return {
         ...state,
         user: {
           id: null, login: '', email: '', imageUrl: '',
         },
-        isAuth: false,
       };
     default:
       return state;
