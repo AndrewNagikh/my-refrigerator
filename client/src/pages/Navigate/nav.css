@@ -6,6 +6,7 @@
     box-shadow: black 1px 1px 5px 1px;
     background-color: white;
     margin-bottom: 10px;
+    z-index: 2;
 }
 
 .navbar-brand {
@@ -45,4 +46,12 @@
     color: black;
     letter-spacing: 2px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.logo {
+    height: 50px;
+    margin-right: 16px;
+    width: 50px;
+    margin-right: 16px;
+    background-color: #e5efd9;
 }

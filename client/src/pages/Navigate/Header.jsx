@@ -9,7 +9,7 @@ import {
 import './nav.css';
 
 function Header() {
-  const isAuth = useSelector((store) => store.isAuth);
+  const isAuth = JSON.parse(localStorage.getItem('isAuth'));
   const userName = useSelector((store) => store.user.login);
   const cuisines = useSelector((store) => store.cuisines);
   const types = useSelector((store) => store.types);
@@ -17,7 +17,8 @@ function Header() {
   return (
     <nav className="navbar">
       <div className="container-fluid">
-        <p className="navbar-brand">Mr. Fridge</p>
+        <img src="/img/logo.png" className="logo" alt="..." />
+        <p className="navbar-brand">Mr.Frdge</p>
         <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
           <span className="navbar-toggler-icon" />
         </button>

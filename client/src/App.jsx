@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import {
+  BrowserRouter, Routes, Route,
+} from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { GoogleLogin } from 'react-google-login';
 import { gapi } from 'gapi-script';
 import { setUser } from './store/action';
 import Header from './pages/Navigate/Header';
@@ -10,6 +11,7 @@ import Cousines from './pages/Cousines/Cousines';
 import Types from './pages/Types/Types';
 import Refrigirator from './pages/Refrigirator/Refrigirator';
 import OneMeal from './pages/OneMeal/OneMeal';
+// import Testik from './pages/Testik/Testik';
 import Login from './pages/Login/Login';
 import Registration from './pages/Registration/Registration';
 import Profile from './pages/profile/Profile';
@@ -24,10 +26,8 @@ function App() {
       credentials: 'include',
       method: 'GET',
       headers: { 'Content-type': 'application/json' },
-      // body: JSON.stringify(input),
     });
     const res = await req.json();
-    // console.log(res);
     if (req.status === 200) dispatch(setUser(res));
   };
   useEffect(() => {
@@ -42,10 +42,6 @@ function App() {
     }
     gapi.load('client:auth2', start);
   });
-  const onSuccess = (response) => {
-    // console.log('--------------------------------------', response.profileObj);
-    dispatch(setUser(response.profileObj));
-  };
 
   return (
     <BrowserRouter>
@@ -54,7 +50,6 @@ function App() {
       <div className="container-all">
         <Routes>
           <Route path="/" element={<Home />} />
-          {/* <Route path="/auth" element={<Auth />} /> */}
           <Route path="/profile" element={<Profile />} />
           <Route path="/login" element={<Login />} />
           <Route path="/registration" element={<Registration />} />
@@ -63,13 +58,6 @@ function App() {
           <Route path="/cuisine/:cuisine" element={<Cousines />} />
           <Route path="/type/:type" element={<Types />} />
         </Routes>
-      </div>
-      <div hidden>
-        <GoogleLogin
-          clientId={clientId}
-          onSuccess={onSuccess}
-          isSignedIn
-        />
       </div>
     </BrowserRouter>
   );
