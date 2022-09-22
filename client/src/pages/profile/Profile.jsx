@@ -1,20 +1,47 @@
+/* eslint-disable no-unused-expressions */
+/* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import React from 'react';
+import { React, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useGoogleLogout } from 'react-google-login';
 import {
-  Routes, Link, Route, Navigate, useLocation,
+  Routes, Link, Route, Navigate, useLocation, useNavigate,
 } from 'react-router-dom';
+import { logoutUser } from '../../store/action';
 import './profileCSS.css';
 
-function Profile({ userName = 'User Name' }) {
+function Profile() {
+  const userName = useSelector((store) => store.user.login);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const navToMain = () => navigate('/');
+  const { signOut } = useGoogleLogout({
+    clientId: '732344056543-jeo72mj73978okpth0nr3k1mrlpl19ac.apps.googleusercontent.com',
+    onLogoutSuccess: navToMain,
+  });
+
+  const logoutHandler = async () => {
+    const req = await fetch('http://localhost:3100/api/v1/logout', {
+      credentials: 'include',
+      method: 'GET',
+      headers: { 'Content-type': 'application/json' },
+    });
+    if (req.status === 200) dispatch(logoutUser());
+    signOut();
+    localStorage.removeItem('isAuth');
+  };
+  useEffect(() => {
+    JSON.parse(localStorage.getItem('isAuth')) ? null : navigate('/');
+  }, []);
   return (
     <div className="wrapper">
       <div className="user">
         <div className="icon_name">
           <div className="icon" />
-          <span className="name">Andrew bzhizstdkevich</span>
+          <span className="name">{userName}</span>
         </div>
-        <Link to="/logout/">
+        <Link onClick={logoutHandler}>
           <svg width="40" height="40" viewBox="0 0 32 32">
             <g id="login" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
               <path d="M11,20 L13,20 L13,22 C13,23.1045695 13.8954305,24 15,24 L23,24 C24.1045695,24 25,23.1045695 25,22 L25,10 C25,8.8954305 24.1045695,8 23,8 L15,8 C13.8954305,8 13,8.8954305 13,10 L13,12 L11,12 L11,10 C11,7.790861 12.790861,6 15,6 L23,6 C25.209139,6 27,7.790861 27,10 L27,22 C27,24.209139 25.209139,26 23,26 L15,26 C12.790861,26 11,24.209139 11,22 L11,20 Z" id="Combined-Shape" fill="#2F2F36" fillRule="nonzero" />

@@ -2,38 +2,23 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import {
   Routes, Link, Route, Navigate, useLocation,
 } from 'react-router-dom';
-import { useGoogleLogout } from 'react-google-login';
-import { logoutUser } from '../../store/action';
 import './nav.css';
 
 function Header() {
-  const isAuth = useSelector((store) => store.isAuth);
+  const isAuth = JSON.parse(localStorage.getItem('isAuth'));
   const userName = useSelector((store) => store.user.login);
   const cuisines = useSelector((store) => store.cuisines);
   const types = useSelector((store) => store.types);
-  const dispatch = useDispatch();
-  const { signOut } = useGoogleLogout({
-    clientId: '732344056543-jeo72mj73978okpth0nr3k1mrlpl19ac.apps.googleusercontent.com',
-  });
-
-  const logoutHandler = async () => {
-    signOut();
-    const req = await fetch('http://localhost:3100/api/v1/logout', {
-      credentials: 'include',
-      method: 'GET',
-      headers: { 'Content-type': 'application/json' },
-    });
-    if (req.status === 200) dispatch(logoutUser());
-  };
 
   return (
     <nav className="navbar">
       <div className="container-fluid">
-        <p className="navbar-brand">Holodilnichek</p>
+        <img src="/img/logo.png" className="logo" alt="..." />
+        <p className="navbar-brand">Mr.Frdge</p>
         <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
           <span className="navbar-toggler-icon" />
         </button>
@@ -50,11 +35,8 @@ function Header() {
                     <span data-bs-toggle="offcanvas">
                       <Link to="/profile">
                         {userName}
-                        {' '}
-                        |
                       </Link>
                     </span>
-                    <Link onClick={logoutHandler} data-bs-toggle="offcanvas">| Logout</Link>
                   </div>
                 )
                 : (
@@ -69,25 +51,25 @@ function Header() {
           <div className="offcanvas-body">
             <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
               <li className="nav-item" data-bs-dismiss="offcanvas">
-                <Link className="nav-link-text" to="/">На главную</Link>
+                <Link className="nav-link-text" to="/"><span className="link-text">Home</span></Link>
               </li>
               <li className="nav-item" data-bs-dismiss="offcanvas">
-                <Link className="nav-link-text" to="/my-ref">Мой холодильник</Link>
+                <Link className="nav-link-text" to="/my-ref"><span className="link-text">My fridge</span></Link>
               </li>
               <li className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  National cuisine
+                  <span className="link-text">National cuisine</span>
                 </a>
                 <ul className="dropdown-menu nav-link-text">
-                  {cuisines.map((cuisine) => <li data-bs-dismiss="offcanvas" key={cuisine}><Link to={`/cuisine/${cuisine}`} className="dropdown-item">{cuisine}</Link></li>)}
+                  {cuisines.map((cuisine) => <li data-bs-dismiss="offcanvas" key={cuisine}><Link to={`/cuisine/${cuisine}`} className="dropdown-item"><span className="link-text">{cuisine}</span></Link></li>)}
                 </ul>
               </li>
               <li className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Types
+                  <span className="link-text">Types</span>
                 </a>
                 <ul className="dropdown-menu nav-link-text">
-                  {types.map((type) => <li data-bs-dismiss="offcanvas" key={type}><Link to={`/type/${type}`} className="dropdown-item">{type}</Link></li>)}
+                  {types.map((type) => <li data-bs-dismiss="offcanvas" key={type}><Link to={`/type/${type}`} className="dropdown-item"><span className="link-text">{type}</span></Link></li>)}
                 </ul>
               </li>
             </ul>

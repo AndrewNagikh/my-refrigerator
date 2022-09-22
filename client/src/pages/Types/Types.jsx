@@ -4,11 +4,12 @@ import { useParams } from 'react-router-dom';
 import RecipeCard from '../../Components/RecipeCard';
 
 function Types() {
+  const apiKey = '3f8c71044afe46a1a3cae029bb6d7832';
   const { type } = useParams();
   const [recipes, setRecipes] = useState({ isLoad: false, recipesList: [] });
   useEffect(() => {
     const getRecipes = async () => {
-      const recipesReq = await fetch(`https://api.spoonacular.com/recipes/complexSearch?type=${type}&number=50&addRecipeInformation=true&apiKey=337ec7d8808c4c8a8c29b18a585b6352`);
+      const recipesReq = await fetch(`https://api.spoonacular.com/recipes/complexSearch?type=${type}&number=50&addRecipeInformation=true&apiKey=${apiKey}`);
       const recipesRes = await recipesReq.json();
       setRecipes({ isLoad: true, recipesList: recipesRes.results });
     };

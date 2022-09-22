@@ -45,7 +45,6 @@ router.post('/login', async (req, res) => {
     req.session.save(() => {
       if (passCheck) {
         res.status(200).json(user);
-        // setTimeout(() => res.redirect('http://localhost:3000'), 1000);
       }
     });
   } catch (error) {
@@ -74,6 +73,25 @@ router.get('/checkSession', async (req, res) => {
     }
   } catch (error) {
     res.end();
+  }
+});
+
+router.post('/google', async (req, res) => {
+  try {
+    const { name, email, imageUrl } = req.body;
+    const user = await User.findOne({ where: { email } });
+    if (!user) {
+      await User.create({ login: name, email, imageUrl });
+    }
+    req.session.userId = user.id;
+    req.session.save(() => {
+      res.status(200).json(user);
+    });
+    // } else {
+    //   res.sendStatus(400);
+    // }
+  } catch (error) {
+    res.sendStatus(500);
   }
 });
 
