@@ -63,6 +63,37 @@ function Profile() {
     setMealData(getMealRes);
   };
 
+  const getMealPlan = () => {
+    if (Array.isArray(mealData)) {
+      return (mealData.map((recipe) => (
+        <RecipeCard id={recipe.id} url={`https://spoonacular.com/recipeImages/${recipe.id}-556x370.jpg`} title={recipe.title} summary={recipe.summary} dishType="dish type" preparationMinutes={recipe.readyInMinutes} key={recipe.id} />
+      )));
+    }
+    if (mealData.monday) {
+      return (
+        <>
+          <h3>Monday</h3>
+          {mealData.monday.meals.map((recipe) => <RecipeCard id={recipe.id} url={`https://spoonacular.com/recipeImages/${recipe.id}-556x370.jpg`} title={recipe.title} summary={recipe.summary} dishType="dish type" preparationMinutes={recipe.readyInMinutes} key={recipe.id} />)}
+          <h3>Tuesday</h3>
+          {mealData.tuesday.meals.map((recipe) => <RecipeCard id={recipe.id} url={`https://spoonacular.com/recipeImages/${recipe.id}-556x370.jpg`} title={recipe.title} summary={recipe.summary} dishType="dish type" preparationMinutes={recipe.readyInMinutes} key={recipe.id} />)}
+          <h3>Wednesday</h3>
+          {mealData.wednesday.meals.map((recipe) => <RecipeCard id={recipe.id} url={`https://spoonacular.com/recipeImages/${recipe.id}-556x370.jpg`} title={recipe.title} summary={recipe.summary} dishType="dish type" preparationMinutes={recipe.readyInMinutes} key={recipe.id} />)}
+          <h3>Thursday</h3>
+          {mealData.thursday.meals.map((recipe) => <RecipeCard id={recipe.id} url={`https://spoonacular.com/recipeImages/${recipe.id}-556x370.jpg`} title={recipe.title} summary={recipe.summary} dishType="dish type" preparationMinutes={recipe.readyInMinutes} key={recipe.id} />)}
+          <h3>Friday</h3>
+          {mealData.friday.meals.map((recipe) => <RecipeCard id={recipe.id} url={`https://spoonacular.com/recipeImages/${recipe.id}-556x370.jpg`} title={recipe.title} summary={recipe.summary} dishType="dish type" preparationMinutes={recipe.readyInMinutes} key={recipe.id} />)}
+          <h3>Saturday</h3>
+          {mealData.saturday.meals.map((recipe) => <RecipeCard id={recipe.id} url={`https://spoonacular.com/recipeImages/${recipe.id}-556x370.jpg`} title={recipe.title} summary={recipe.summary} dishType="dish type" preparationMinutes={recipe.readyInMinutes} key={recipe.id} />)}
+          <h3>Sunday</h3>
+          {mealData.sunday.meals.map((recipe) => <RecipeCard id={recipe.id} url={`https://spoonacular.com/recipeImages/${recipe.id}-556x370.jpg`} title={recipe.title} summary={recipe.summary} dishType="dish type" preparationMinutes={recipe.readyInMinutes} key={recipe.id} />)}
+        </>
+      );
+    }
+    return (
+      <h2>Here would be your meal plan</h2>
+    );
+  };
+
   const logoutHandler = async () => {
     const req = await fetch('http://localhost:3100/api/v1/logout', {
       credentials: 'include',
@@ -117,7 +148,7 @@ function Profile() {
         <h2 onClick={mealClick} className={`title ${meal}`}>My meal plan</h2>
       </div>
       <div className="content">
-        {fav === 'active' ? favData.map((favdata) => <RecipeCard id={favdata.id} url={`https://spoonacular.com/recipeImages/${favdata.id}-556x370.jpg`} title={favdata.title} summary={favdata.summary} dishType="dish type" preparationMinutes={favdata.readyInMinutes} key={favdata.id} />) : mealData.map((meals) => <RecipeCard id={meals.id} url={`https://spoonacular.com/recipeImages/${meals.id}-556x370.jpg`} title={meals.title} summary={meals.summary} dishType="dish type" preparationMinutes={meals.readyInMinutes} key={meals.id} />)}
+        {/* {fav === 'active' ? favData.map((favdata) => <RecipeCard id={favdata.id} url={`https://spoonacular.com/recipeImages/${favdata.id}-556x370.jpg`} title={favdata.title} summary={favdata.summary} dishType="dish type" preparationMinutes={favdata.readyInMinutes} key={favdata.id} />) : mealData.map((meals) => <RecipeCard id={meals.id} url={`https://spoonacular.com/recipeImages/${meals.id}-556x370.jpg`} title={meals.title} summary={meals.summary} dishType="dish type" preparationMinutes={meals.readyInMinutes} key={meals.id} />)} */ getMealPlan()}
       </div>
     </div>
   );
