@@ -145,7 +145,7 @@ function OneMeal() {
                       <Favorite id={id} className="svg-big" />
                     </div>
                   </div>
-                  <p className="card-text">{ThisRec.instructions}</p>
+                  <p className="card-text align-justify">{ThisRec.instructions}</p>
                   <p className="card-text">
                     Сooking time:
                     {' '}
