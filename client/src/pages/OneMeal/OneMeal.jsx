@@ -11,9 +11,9 @@ import { keys } from '../api_keys';
 function OneMeal() {
   const params = useParams();
   const [ThisRec, setThisRec] = useState({});
-  const [Ingr, setIngr] = useState({});
+  const [Ingr, setIngr] = useState([]);
 
-  const [Nutr, setNutr] = useState({});
+  const [Nutr, setNutr] = useState([]);
   const [Sim, setSim] = useState(0);
   const [Equ, setEqu] = useState({});
 
@@ -26,9 +26,7 @@ function OneMeal() {
   // const apiKey = 'eb668d0ba9a74900b0d10015bd11fd21'; // Запасной ключ
   // fetch запрос от сервера
   const { id } = params;
-  const url = `https://api.spoonacular.com/recipes/${id}/information?apiKey=${keys.apiKey4}`;
-  const urlIngr = `https://api.spoonacular.com/recipes/${id}/ingredientWidget.json?apiKey=${keys.apiKey4}`;
-  const urlNutr = `https://api.spoonacular.com/recipes/${id}/nutritionWidget.json?apiKey=${keys.apiKey4}`;
+  const url = `https://api.spoonacular.com/recipes/${id}/information?includeNutrition=true&apiKey=${keys.apiKey4}`;
   const urlSim = `https://api.spoonacular.com/recipes/${id}/similar?apiKey=${keys.apiKey4}`;
   const urlEqu = `https://api.spoonacular.com/recipes/${id}/equipmentWidget.json?apiKey=${keys.apiKey4}`;
   const options = {
@@ -37,7 +35,7 @@ function OneMeal() {
       'Content-Type': 'application/json',
     },
   };
-  const ThisIngr = Ingr.ingredients?.map((el) => (
+  const ThisIngr = Ingr?.map((el) => (
     <td>
       <div className="this">
         {el.image !== null && el.image !== 'no.jpg' && el.image !== 'no.png'
@@ -49,17 +47,17 @@ function OneMeal() {
         {' '}
       </div>
       {' '}
-      {el.amount.metric.unit !== ''
+      {el.measures.metric.unitShort !== ''
         ? (
           <div className="ourname">
-            {el.amount.metric.value}
+            {el.measures.metric.amount}
             {' '}
-            {el.amount.metric.unit}
+            {el.measures.metric.unitShort}
           </div>
         )
         : (
           <div className="ourname">
-            {el.amount.metric.value}
+            {el.measures.metric.amount}
             {' item'}
           </div>
         )}
@@ -80,16 +78,12 @@ function OneMeal() {
 
   const OneBreakfast = async () => {
     try {
-      const responseIngr = await fetch(urlIngr, options);
       const response = await fetch(url, options);
       const responseSim = await fetch(urlSim, options);
-      const responseNutr = await fetch(urlNutr, options);
       const responseEqu = await fetch(urlEqu, options);
 
       const recipeDef = await response.json();
-      const recipeDefIngr = await responseIngr.json();
       const recipeSim = await responseSim.json();
-      const recipeNutr = await responseNutr.json();
       const recipeEqu = await responseEqu.json();
       const recipe = {
         id: recipeDef.id,
@@ -101,20 +95,13 @@ function OneMeal() {
         analyzedInstructions: recipeDef.analyzedInstructions,
       };
 
-      const ThisNutr = {
-        calories: recipeNutr.calories,
-        carbs: recipeNutr.carbs,
-        fat: recipeNutr.carbs,
-        protein: recipeNutr.protein,
-      };
       const newId = recipeSim[0].id;
-      console.log(recipe);
-      setNutr(ThisNutr);
+      setIngr(recipeDef.extendedIngredients);
+
       setSim(newId);
       setThisRec(recipe);
-
+      setNutr(recipeDef.nutrition.nutrients);
       setEqu(recipeEqu);
-      setIngr(recipeDefIngr);
       setLoad(true);
     } catch (err) {
       console.log(err);
@@ -190,22 +177,26 @@ function OneMeal() {
                   <div className="card-body">
                     Calories:
                     {' '}
-                    {Nutr.calories}
+                    {Nutr[0].amount}
+                    {Nutr[0].unit}
                   </div>
                   <div className="card-body">
                     Carbs:
                     {' '}
-                    {Nutr.carbs}
+                    {Nutr[3].amount}
+                    {Nutr[3].unit}
                   </div>
                   <div className="card-body">
                     Fat:
                     {' '}
-                    {Nutr.fat}
+                    {Nutr[1].amount}
+                    {Nutr[1].unit}
                   </div>
                   <div className="card-body">
                     Protein:
                     {' '}
-                    {Nutr.protein}
+                    {Nutr[8].amount}
+                    {Nutr[8].unit}
                   </div>
                 </div>
               )
