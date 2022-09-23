@@ -53,6 +53,12 @@ const initState = {
   ],
   ingCash: {},
   fridge: [],
+  user: {
+    id: null,
+    login: '',
+    email: '',
+    imageUrl: '',
+  },
 };
 
 export const reducers = (state = initState, action) => {
@@ -64,6 +70,23 @@ export const reducers = (state = initState, action) => {
     case types.REMOVE_FROM_FRIDGE:
       const filter = state.fridge.filter((ing) => ing.id !== action.payload.id);
       return { ...state, fridge: filter };
+    case types.SET_USER:
+      // eslint-disable-next-line no-case-declarations
+      const setUser = {
+        ...state.user,
+        id: action.payload.id,
+        login: action.payload.login,
+        email: action.payload.email,
+        imageUrl: action.payload.imageUrl || '',
+      };
+      return { ...state, user: setUser };
+    case types.LOGOUT_USER:
+      return {
+        ...state,
+        user: {
+          id: null, login: '', email: '', imageUrl: '',
+        },
+      };
     default:
       return state;
   }

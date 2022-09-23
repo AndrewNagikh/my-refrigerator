@@ -1,15 +1,17 @@
-@import url('../cssVariables.css');
 .navbar {
+    z-index: 2;
     position: sticky;
     top: 0;
     width: 100%;
     box-shadow: black 1px 1px 5px 1px;
     background-color: white;
     margin-bottom: 10px;
+    z-index: 2;
 }
 
 .navbar-brand {
     margin: 0;
+    font-family: 'Playfair Display';
 }
 
 .profLink {
@@ -22,7 +24,6 @@
 }
 
 .nav-link-text{
-    font-family: 'Roboto';
     font-size: 24px;
     color: black;
     text-decoration: none;
@@ -37,10 +38,37 @@
     font-size: 24px;
 }
 
-.dropdown-menu {
-    transition: 0.3s;
-}
-
 .dropdown-item {
     font-size: 20px;
+}
+
+.link-text {
+    color: black;
+    letter-spacing: 2px;
+    font-family: 'Playfair Display'
+}
+
+.logo {
+    height: 50px;
+    margin-right: 16px;
+    width: 50px;
+    margin-right: 16px;
+    background-color: #ffffff;
+}
+
+.navbar-brand {
+    font-size: 40px;
+    letter-spacing: 2px;
+}
+
+.icon {
+    height: 16px;
+    margin-right: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-right: 16px;
+    background-color: #e5efd9;
 }

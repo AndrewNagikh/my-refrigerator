@@ -1,37 +1,44 @@
+/* eslint-disable max-len */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './recipeCardCSS.css';
+import Favorite from './favorite/Favorite';
 
 function RecipeCard({
-  id, url, title, dishType, preparationMinutes,
+  id, url, title, dishType, preparationMinutes, likes,
 }) {
   return (
     <div className="recipe-card">
-      <figure>
+      <figure className="card-bg-transparent">
         <Link to={`/recipe/${id}`}>
-          <img src={url} alt="..." />
+          {url
+            ? <img src={url} alt="..." />
+            : <img src="https://spoonacular.com/recipeImages/471334-312x231.jpg" alt="..." />}
         </Link>
       </figure>
 
       <div className="card-meta">
-        <p className="dish-type">{dishType}</p>
+        <p className="dish-type">{dishType || 'dish type'}</p>
 
         <ul className="dish-stats">
           <li>
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M8 2C4.6875 2 2 4.6875 2 8C2 11.3125 4.6875 14 8 14C11.3125 14 14 11.3125 14 8C14 4.6875 11.3125 2 8 2Z" strokeMiterlimit="10" />
-              <path d="M8 4V8.5H11" strokeLinecap="round" strokeLinejoin="round" />
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" className="bi bi-clock" viewBox="0 0 16 16">
+              <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z" />
+              <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z" />
             </svg>
             {preparationMinutes}
             min
           </li>
-          <li>
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M4.9713 2.5C7.00005 2.5 8.00005 4.5 8.00005 4.5C8.00005 4.5 9.00005 2.5 11.0288 2.5C12.6775 2.5 13.9832 3.87937 14 5.52531C14.0344 8.94187 11.2897 11.3716 8.2813 13.4134C8.19836 13.4699 8.10036 13.5 8.00005 13.5C7.89973 13.5 7.80174 13.4699 7.7188 13.4134C4.71067 11.3716 1.96598 8.94187 2.00005 5.52531C2.01692 3.87937 3.32255 2.5 4.9713 2.5Z" strokeLinecap="round" strokeLinejoin="round" />
+          {/* <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" className="bi bi-heart" viewBox="0 0 16 16">
+              <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
             </svg>
-            237
+            {likes}
+          </li> */}
+          <li>
+            <Favorite id={id} className="svg-small" />
           </li>
         </ul>
       </div>
