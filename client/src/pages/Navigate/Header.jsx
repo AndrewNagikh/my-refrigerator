@@ -30,8 +30,8 @@ function Header() {
                 ? (
                   <div className="profLink">
                     <div className="icon" style={{ backgroundImage: `url(${userIcon})` }} />
-                    <span data-bs-toggle="offcanvas">
-                      <Link to="/profile">
+                    <span data-bs-toggle="offcanvas" className="link-text">
+                      <Link className="nav-link-text" to="/profile">
                         {userName}
                       </Link>
                     </span>
@@ -39,8 +39,8 @@ function Header() {
                 )
                 : (
                   <div className="profLink">
-                    <span data-bs-toggle="offcanvas"><Link to="/login">Login |</Link></span>
-                    <span data-bs-toggle="offcanvas"><Link to="/registration">| Registration</Link></span>
+                    <span data-bs-toggle="offcanvas" className="link-text"><Link className="nav-link-text" to="/login">Login |</Link></span>
+                    <span data-bs-toggle="offcanvas" className="link-text"><Link className="nav-link-text" to="/registration">| Registration</Link></span>
                   </div>
                 )}
             </h5>
