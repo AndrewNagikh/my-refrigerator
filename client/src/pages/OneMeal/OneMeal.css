@@ -1,4 +1,6 @@
 .ourname {
+    display: flex;
+    justify-content: center;
     text-align: center;
 }
 .alal {
@@ -52,7 +54,7 @@
 td {
     margin: 10px;
 }
-img {
+.strange {
     display: block;
     margin-left: auto;
     margin-right: auto;
