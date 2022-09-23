@@ -4,14 +4,15 @@ import FormSearch from '../../Components/formSearch/FormSearch';
 import RecipeCard from '../../Components/RecipeCard';
 import './homeCSS.css';
 // import { recipes } from './save';
+import { keys } from '../api_keys';
 
 export default function Home() {
   const [recipes, setReciepes] = useState([]);
 
   useEffect(() => {
     const getRandomRecipes = async () => {
-      const apiKey = '3f8c71044afe46a1a3cae029bb6d7832';
-      const response = await fetch(`https://api.spoonacular.com/recipes/random?number=20&apiKey=${apiKey}`, {
+      // const apiKey = '3f8c71044afe46a1a3cae029bb6d7832';
+      const response = await fetch(`https://api.spoonacular.com/recipes/random?number=20&apiKey=${keys.apiKey1}`, {
         method: 'GET',
       });
       const recipesDef = await response.json();
@@ -34,12 +35,12 @@ export default function Home() {
   }, []);
 
   const submitHandler = async (search) => {
-    const apiKey = 'a474cb28455d46ceb257ef9e3a4a72f7';
+    // const apiKey = 'a474cb28455d46ceb257ef9e3a4a72f7';
     // const apiKey = '3f8c71044afe46a1a3cae029bb6d7832';
 
     const searchStr = search.split(' ').join(',+');
 
-    const response = await fetch(`https://api.spoonacular.com/recipes/complexSearch?query=${searchStr}&addRecipeInformation=true&number=10&apiKey=${apiKey}`, {
+    const response = await fetch(`https://api.spoonacular.com/recipes/complexSearch?query=${searchStr}&addRecipeInformation=true&number=10&apiKey=${keys.apiKey2}`, {
       method: 'GET',
     });
     const recipesDef = await response.json();

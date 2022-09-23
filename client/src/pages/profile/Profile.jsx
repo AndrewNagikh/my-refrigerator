@@ -15,9 +15,10 @@ import {
 import { logoutUser } from '../../store/action';
 import './profileCSS.css';
 import RecipeCard from '../../Components/RecipeCard';
+import { keys } from '../api_keys';
 
 function Profile() {
-  const apiKey = 'aa844e1894b74bc2a3e672c59f887e64';
+  // const apiKey = 'aa844e1894b74bc2a3e672c59f887e64';
   const [fav, setFav] = useState('non-active');
   const [meal, setMeal] = useState('non-active');
   const [mealData, setMealData] = useState([]);
@@ -45,7 +46,7 @@ function Profile() {
     });
     const getFavRes = await getFavreq.json();
     const ids = getFavRes.join(',');
-    const recipesRes = await fetch(`https://api.spoonacular.com/recipes/informationBulk?ids=${ids}&apiKey=${apiKey}`);
+    const recipesRes = await fetch(`https://api.spoonacular.com/recipes/informationBulk?ids=${ids}&apiKey=${keys.apiKey2}`);
     const recipesReq = await recipesRes.json();
     setFavData(recipesReq);
   };

@@ -4,10 +4,11 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import RecipeCard from '../../Components/RecipeCard';
 import './mealPlanCSS.css';
+import { keys } from '../api_keys';
 
 function MealPlan() {
   const userId = useSelector((store) => store.user.id);
-  const apiKey = 'aa844e1894b74bc2a3e672c59f887e64';
+  // const apiKey = 'aa844e1894b74bc2a3e672c59f887e64';
   const [options, setOptions] = useState({ diet: '', time: '', calories: '' });
   const [recipes, setRecipes] = useState({ meals: [], nutrients: {} });
   const cangeHandler = (event) => {
@@ -15,7 +16,7 @@ function MealPlan() {
   };
   const getRecipes = async () => {
     if (options.calories && options.diet && options.time) {
-      const recipeReq = await fetch(`https://api.spoonacular.com/mealplanner/generate?timeFrame=${options.time}&targetCalories=${options.calories}&diet=${options.diet}&apiKey=${apiKey}`);
+      const recipeReq = await fetch(`https://api.spoonacular.com/mealplanner/generate?timeFrame=${options.time}&targetCalories=${options.calories}&diet=${options.diet}&apiKey=${keys.apiKey3}`);
       const recipeRes = await recipeReq.json();
       setRecipes({ meals: recipeRes.meals, nutrients: recipeRes.nutrients });
     } else {
