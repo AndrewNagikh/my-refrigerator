@@ -39,10 +39,12 @@ function OneMeal() {
   };
   const ThisIngr = Ingr.ingredients?.map((el) => (
     <td>
-      {el.image !== null && el.image !== 'no.jpg' && el.image !== 'no.png'
-        ? <img src={`https://spoonacular.com/cdn/ingredients_100x100/${el.image}`} className="this" alt="" />
-        : <img src="https://playbcm.net/uploads/monthly_2019_06/1.png.52e7dbf919d58285dee3e0a89177c676.png" className="ingImg this" alt="" />}
-      <div className="ourname">
+      <div className="this">
+        {el.image !== null && el.image !== 'no.jpg' && el.image !== 'no.png'
+          ? <img src={`https://spoonacular.com/cdn/ingredients_100x100/${el.image}`} alt="" />
+          : <img src="https://spoonacular.com/recipeImages/471334-312x231.jpg" className="ingImg" alt="" />}
+      </div>
+      <div className="ourname alal">
         {el.name}
         {' '}
       </div>
@@ -72,7 +74,7 @@ function OneMeal() {
       </div>
       {el.image !== null && el.image !== 'no.png' && el.image !== 'no.jpg'
         ? <img src={`https://spoonacular.com/cdn/equipment_100x100/${el.image}`} alt="" />
-        : <img src="https://playbcm.net/uploads/monthly_2019_06/1.png.52e7dbf919d58285dee3e0a89177c676.png" className="ingImg" alt="" />}
+        : <img src="https://spoonacular.com/recipeImages/471334-312x231.jpg" className="ingImg" alt="" />}
     </td>
   ));
 
