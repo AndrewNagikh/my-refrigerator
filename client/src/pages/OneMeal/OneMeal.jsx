@@ -22,7 +22,7 @@ function OneMeal() {
   const [BNutr, setBNutr] = useState(false);
   const [BEqu, setBEqu] = useState(false);
 
-  // const apiKey = '8958ed8f6c484d13a2a65ea80376f7f9'; // Ключ Антона
+  // const apiKey = 'dd392776e3a64eef8ead31612c0fa87a'; // Ключ Антона
   // const apiKey = 'eb668d0ba9a74900b0d10015bd11fd21'; // Запасной ключ
   // fetch запрос от сервера
   const { id } = params;
@@ -41,8 +41,8 @@ function OneMeal() {
     <td>
       <div className="this">
         {el.image !== null && el.image !== 'no.jpg' && el.image !== 'no.png'
-          ? <img src={`https://spoonacular.com/cdn/ingredients_100x100/${el.image}`} alt="" />
-          : <img src="https://spoonacular.com/recipeImages/471334-312x231.jpg" className="ingImg" alt="" />}
+          ? <img src={`https://spoonacular.com/cdn/ingredients_100x100/${el.image}`} className="strange" alt="" />
+          : <img src="https://spoonacular.com/recipeImages/471334-312x231.jpg" className="ingImg strange" alt="" />}
       </div>
       <div className="ourname alal">
         {el.name}
@@ -73,8 +73,8 @@ function OneMeal() {
         {' '}
       </div>
       {el.image !== null && el.image !== 'no.png' && el.image !== 'no.jpg'
-        ? <img src={`https://spoonacular.com/cdn/equipment_100x100/${el.image}`} alt="" />
-        : <img src="https://spoonacular.com/recipeImages/471334-312x231.jpg" className="ingImg" alt="" />}
+        ? <img src={`https://spoonacular.com/cdn/equipment_100x100/${el.image}`} className="strange" alt="" />
+        : <img src="https://spoonacular.com/recipeImages/471334-312x231.jpg" className="ingImg strange" alt="" />}
     </td>
   ));
 
