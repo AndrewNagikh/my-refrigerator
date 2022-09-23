@@ -7,9 +7,9 @@ import './mealPlanCSS.css';
 
 function MealPlan() {
   const userId = useSelector((store) => store.user.id);
-  const apiKey = 'aa844e1894b74bc2a3e672c59f887e64';
+  const apiKey = '71f0bdba3ac04bb98b0ea486b7624b2e';
   const [options, setOptions] = useState({ diet: '', time: '', calories: '' });
-  const [recipes, setRecipes] = useState({ meals: [], nutrients: {} });
+  const [recipes, setRecipes] = useState({ meals: '', nutrients: {} });
   const cangeHandler = (event) => {
     setOptions({ ...options, [event.target.name]: event.target.value });
   };
@@ -17,7 +17,8 @@ function MealPlan() {
     if (options.calories && options.diet && options.time) {
       const recipeReq = await fetch(`https://api.spoonacular.com/mealplanner/generate?timeFrame=${options.time}&targetCalories=${options.calories}&diet=${options.diet}&apiKey=${apiKey}`);
       const recipeRes = await recipeReq.json();
-      setRecipes({ meals: recipeRes.meals, nutrients: recipeRes.nutrients });
+      console.log(recipeRes);
+      setRecipes({ meals: recipeRes.meals || recipeRes.week, nutrients: recipeRes.nutrients });
     } else {
       alert('Set all options');
     }
@@ -36,6 +37,37 @@ function MealPlan() {
     } else {
       alert('Please, sing up if you want add meal plan to your profile');
     }
+  };
+  const getMealPlan = () => {
+    console.log(recipes);
+    if (Array.isArray(recipes.meals)) {
+      return (recipes.meals.map((recipe) => (
+        <RecipeCard id={recipe.id} url={`https://spoonacular.com/recipeImages/${recipe.id}-556x370.jpg`} title={recipe.title} summary={recipe.summary} dishType="dish type" preparationMinutes={recipe.readyInMinutes} key={recipe.id} />
+      )));
+    }
+    if (recipes.meals.monday) {
+      return (
+        <>
+          <h3>Monday</h3>
+          {recipes.meals.monday.meals.map((recipe) => <RecipeCard id={recipe.id} url={`https://spoonacular.com/recipeImages/${recipe.id}-556x370.jpg`} title={recipe.title} summary={recipe.summary} dishType="dish type" preparationMinutes={recipe.readyInMinutes} key={recipe.id} />)}
+          <h3>Tuesday</h3>
+          {recipes.meals.tuesday.meals.map((recipe) => <RecipeCard id={recipe.id} url={`https://spoonacular.com/recipeImages/${recipe.id}-556x370.jpg`} title={recipe.title} summary={recipe.summary} dishType="dish type" preparationMinutes={recipe.readyInMinutes} key={recipe.id} />)}
+          <h3>Wednesday</h3>
+          {recipes.meals.wednesday.meals.map((recipe) => <RecipeCard id={recipe.id} url={`https://spoonacular.com/recipeImages/${recipe.id}-556x370.jpg`} title={recipe.title} summary={recipe.summary} dishType="dish type" preparationMinutes={recipe.readyInMinutes} key={recipe.id} />)}
+          <h3>Thursday</h3>
+          {recipes.meals.thursday.meals.map((recipe) => <RecipeCard id={recipe.id} url={`https://spoonacular.com/recipeImages/${recipe.id}-556x370.jpg`} title={recipe.title} summary={recipe.summary} dishType="dish type" preparationMinutes={recipe.readyInMinutes} key={recipe.id} />)}
+          <h3>Friday</h3>
+          {recipes.meals.friday.meals.map((recipe) => <RecipeCard id={recipe.id} url={`https://spoonacular.com/recipeImages/${recipe.id}-556x370.jpg`} title={recipe.title} summary={recipe.summary} dishType="dish type" preparationMinutes={recipe.readyInMinutes} key={recipe.id} />)}
+          <h3>Saturday</h3>
+          {recipes.meals.saturday.meals.map((recipe) => <RecipeCard id={recipe.id} url={`https://spoonacular.com/recipeImages/${recipe.id}-556x370.jpg`} title={recipe.title} summary={recipe.summary} dishType="dish type" preparationMinutes={recipe.readyInMinutes} key={recipe.id} />)}
+          <h3>Sunday</h3>
+          {recipes.meals.sunday.meals.map((recipe) => <RecipeCard id={recipe.id} url={`https://spoonacular.com/recipeImages/${recipe.id}-556x370.jpg`} title={recipe.title} summary={recipe.summary} dishType="dish type" preparationMinutes={recipe.readyInMinutes} key={recipe.id} />)}
+        </>
+      );
+    }
+    return (
+      <h2>Here would be your meal plan</h2>
+    );
   };
   return (
     <div className="wrapper">
@@ -68,15 +100,14 @@ function MealPlan() {
         <span className="text">Set All Options</span>
         <span>Get meal plan!</span>
       </button>
-      {recipes.meals.length >= 1 ? (
+      {recipes.meals ? (
         <button type="button" className="save-btn" onClick={saveMealPlan}>
           Did you like this plan?
-          {' '}
           <span>Save It!</span>
         </button>
       ) : null}
       <div className="recipes">
-        {recipes.meals.map((recipe) => <RecipeCard id={recipe.id} url={`https://spoonacular.com/recipeImages/${recipe.id}-556x370.jpg`} title={recipe.title} summary={recipe.summary} dishType="dish type" preparationMinutes={recipe.readyInMinutes} key={recipe.id} />)}
+        {getMealPlan()}
       </div>
     </div>
 

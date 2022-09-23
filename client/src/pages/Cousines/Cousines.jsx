@@ -1,6 +1,7 @@
 /* eslint-disable max-len */
 import { React, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import Loader from '../../Components/Loader';
 import RecipeCard from '../../Components/RecipeCard';
 import './cousinesCSS.css';
 
@@ -27,9 +28,7 @@ function Cousines() {
         {recipes.isLoad
           ? recipes.recipesList.map((recipe) => <RecipeCard id={recipe.id} url={recipe.image} title={recipe.title} summary={recipe.summary} dishType={recipe.dishTypes.at(0)} preparationMinutes={recipe.readyInMinutes} key={recipe.id} />)
           : (
-            <div className="spinner-border text-success" role="status">
-              <span className="visually-hidden">Loading...</span>
-            </div>
+            <Loader />
           )}
       </div>
     </div>
