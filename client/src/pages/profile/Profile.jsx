@@ -148,7 +148,7 @@ function Profile() {
         <h2 onClick={mealClick} className={`title ${meal}`}>My meal plan</h2>
       </div>
       <div className="content">
-        {/* {fav === 'active' ? favData.map((favdata) => <RecipeCard id={favdata.id} url={`https://spoonacular.com/recipeImages/${favdata.id}-556x370.jpg`} title={favdata.title} summary={favdata.summary} dishType="dish type" preparationMinutes={favdata.readyInMinutes} key={favdata.id} />) : mealData.map((meals) => <RecipeCard id={meals.id} url={`https://spoonacular.com/recipeImages/${meals.id}-556x370.jpg`} title={meals.title} summary={meals.summary} dishType="dish type" preparationMinutes={meals.readyInMinutes} key={meals.id} />)} */ getMealPlan()}
+        {fav === 'active' ? favData.map((favdata) => <RecipeCard id={favdata.id} url={`https://spoonacular.com/recipeImages/${favdata.id}-556x370.jpg`} title={favdata.title} summary={favdata.summary} dishType="dish type" preparationMinutes={favdata.readyInMinutes} key={favdata.id} />) : getMealPlan()}
       </div>
     </div>
   );

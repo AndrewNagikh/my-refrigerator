@@ -17,7 +17,6 @@ function MealPlan() {
     if (options.calories && options.diet && options.time) {
       const recipeReq = await fetch(`https://api.spoonacular.com/mealplanner/generate?timeFrame=${options.time}&targetCalories=${options.calories}&diet=${options.diet}&apiKey=${apiKey}`);
       const recipeRes = await recipeReq.json();
-      console.log(recipeRes);
       setRecipes({ meals: recipeRes.meals || recipeRes.week, nutrients: recipeRes.nutrients });
     } else {
       alert('Set all options');
