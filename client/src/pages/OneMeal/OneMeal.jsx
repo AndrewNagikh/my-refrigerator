@@ -122,7 +122,9 @@ function OneMeal() {
           <div className="card mb-3" width="540px;">
             <div className="row g-0">
               <div className="col-md-4 align-self-center">
-                <img src={ThisRec.image} className="img-fluid rounded-start mainImg" alt="..." />
+                {ThisRec.image
+                  ? <img src={ThisRec.image} className="img-fluid rounded-start mainImg" alt="..." />
+                  : <img src="https://spoonacular.com/recipeImages/471334-312x231.jpg" className="img-fluid rounded-start mainImg" alt="..." />}
               </div>
               <div className="col-md-8">
                 <div className="card-body">
@@ -132,7 +134,7 @@ function OneMeal() {
                       <Favorite id={id} className="svg-big" />
                     </div>
                   </div>
-                  <p className="card-text">{ThisRec.instructions}</p>
+                  <p className="card-text align-justify">{ThisRec.instructions}</p>
                   <p className="card-text">
                     Сooking time:
                     {' '}

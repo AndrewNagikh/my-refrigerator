@@ -3,15 +3,17 @@ const { UserFav } = require('../../db/models');
 async function checkFav(req, res) {
   try {
     const { id } = req.params;
-    const userId = req.session?.userId;
-    console.log('user_id', userId);
-    const findFav = await UserFav.findOne({ where: { recipe_id: id, user_id: userId } });
-    if (findFav) {
-      console.log('findFav', findFav);
-      return res.json({ fav: true });
+    let userId;
+    if (req.session.userId) {
+      userId = req.session.userId;
+      console.log('userId', userId);
+      const findFav = await UserFav.findOne({ where: { recipe_id: id, user_id: userId } });
+      if (findFav) {
+        res.json({ fav: true });
+        return;
+      }
     }
-    console.log('findFav', findFav);
-    return res.json({ fav: false });
+    res.json({ fav: false });
   } catch (error) {
     console.log('check back error', error);
   }

@@ -13,7 +13,9 @@ function RecipeCard({
     <div className="recipe-card">
       <figure className="card-bg-transparent">
         <Link to={`/recipe/${id}`}>
-          <img src={url} alt="..." />
+          {url
+            ? <img src={url} alt="..." />
+            : <img src="https://spoonacular.com/recipeImages/471334-312x231.jpg" alt="..." />}
         </Link>
       </figure>
 

@@ -40,6 +40,9 @@
 .card {
     margin-bottom: 20px;
 }
+.align-justify {
+    text-align: justify;
+}
 .taste {
     text-decoration: none;
 }
