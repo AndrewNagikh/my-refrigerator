@@ -10,7 +10,7 @@
     margin-bottom: 20px;
     margin-right: 10px;
     border-radius: 8px;
-    border: black 1px solid;
+    /* border: black 1px solid; */
     padding: 5px;
 }
 
@@ -26,9 +26,9 @@ figcaption {
     text-align: center;
 }
 
-.btn {
+.add {
     width: 70%;
-    height: 30px;
+    height: 30px !important;
     display: flex;
     justify-content: center;
     align-items: center;

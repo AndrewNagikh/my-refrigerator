@@ -21,7 +21,7 @@ function OneMeal() {
   const [BNutr, setBNutr] = useState(false);
   const [BEqu, setBEqu] = useState(false);
 
-  const apiKey = '130349f4c77347f888ed7d8ad27c2aec'; // Ключ Антона
+  const apiKey = '94c996c0fec64803a5fd36d95413a8a5'; // Ключ Антона
   // const apiKey = 'eb668d0ba9a74900b0d10015bd11fd21'; // Запасной ключ
   // fetch запрос от сервера
   const { id } = params;
