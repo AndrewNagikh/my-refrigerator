@@ -15,9 +15,10 @@ import {
 import { logoutUser } from '../../store/action';
 import './profileCSS.css';
 import RecipeCard from '../../Components/RecipeCard';
+import { keys } from '../api_keys';
 
 function Profile() {
-  const apiKey = 'aa844e1894b74bc2a3e672c59f887e64';
+  // const apiKey = 'aa844e1894b74bc2a3e672c59f887e64';
   const [fav, setFav] = useState('non-active');
   const [meal, setMeal] = useState('non-active');
   const [mealData, setMealData] = useState([]);
@@ -45,7 +46,7 @@ function Profile() {
     });
     const getFavRes = await getFavreq.json();
     const ids = getFavRes.join(',');
-    const recipesRes = await fetch(`https://api.spoonacular.com/recipes/informationBulk?ids=${ids}&apiKey=${apiKey}`);
+    const recipesRes = await fetch(`https://api.spoonacular.com/recipes/informationBulk?ids=${ids}&apiKey=${keys.apiKey2}`);
     const recipesReq = await recipesRes.json();
     setFavData(recipesReq);
   };
@@ -111,7 +112,7 @@ function Profile() {
       <div className="user">
         <div className="icon_name">
           <div className="icon" style={{ backgroundImage: `url(${userIcon})` }} />
-          <span className="name">{userName}</span>
+          <span className="name title">{userName}</span>
         </div>
         <Link onClick={logoutHandler}>
           <svg width="40" height="40" viewBox="0 0 32 32">
@@ -123,7 +124,7 @@ function Profile() {
         </Link>
       </div>
       <div className="social">
-        <h2 className="_84e0044158">Добавьте ссылки на свои соц.&nbsp;сети</h2>
+        <h2 className="_84e0044158 title">Добавьте ссылки на свои соц.&nbsp;сети</h2>
         <div className="socail_links">
           <div className="vk">
             <img src="/img/vk.svg" width="20" height="20" alt="..." />
@@ -143,8 +144,8 @@ function Profile() {
         </div>
       </div>
       <div className="tabs">
-        <h2 onClick={favClick} className={fav}>Favourites</h2>
-        <h2 onClick={mealClick} className={meal}>My meal plan</h2>
+        <h2 onClick={favClick} className={`title ${fav}`}>Favourites</h2>
+        <h2 onClick={mealClick} className={`title ${meal}`}>My meal plan</h2>
       </div>
       <div className="content">
         {/* {fav === 'active' ? favData.map((favdata) => <RecipeCard id={favdata.id} url={`https://spoonacular.com/recipeImages/${favdata.id}-556x370.jpg`} title={favdata.title} summary={favdata.summary} dishType="dish type" preparationMinutes={favdata.readyInMinutes} key={favdata.id} />) : mealData.map((meals) => <RecipeCard id={meals.id} url={`https://spoonacular.com/recipeImages/${meals.id}-556x370.jpg`} title={meals.title} summary={meals.summary} dishType="dish type" preparationMinutes={meals.readyInMinutes} key={meals.id} />)} */ getMealPlan()}

@@ -1,5 +1,10 @@
 .ourname {
     display: flex;
+    justify-content: center;
+    text-align: center;
+}
+.alal {
+    margin-top: 25px;
 }
 .btn-info {
     display: flex;
@@ -35,10 +40,28 @@
 .card {
     margin-bottom: 20px;
 }
+.align-justify {
+    text-align: justify;
+}
 .taste {
     text-decoration: none;
 }
 .svg-big{
 	width: 25px;
 	height: 25px
+}
+.this {
+    height: 40%;
+    width: 70%;
+}
+td {
+    margin: 10px;
+}
+.strange {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    
 }
