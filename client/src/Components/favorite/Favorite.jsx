@@ -53,8 +53,12 @@ function ViewFavorite({ fav, onToggle, className }) {
   }, [fav]);
 
   const clickBtnHandler = () => {
-    setViewFav(!viewFav);
-    onToggle(!viewFav);
+    if (localStorage.getItem('isAuth')) {
+      setViewFav(!viewFav);
+      onToggle(!viewFav);
+    } else {
+      alert('Please, sing up if you want add meal to favorite');
+    }
   };
 
   return (
