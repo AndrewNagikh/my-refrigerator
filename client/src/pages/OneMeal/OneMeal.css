@@ -1,5 +1,8 @@
 .ourname {
-    display: flex;
+    text-align: center;
+}
+.alal {
+    margin-top: 25px;
 }
 .btn-info {
     display: flex;
@@ -45,4 +48,15 @@
 .this {
     height: 40%;
     width: 70%;
+}
+td {
+    margin: 10px;
+}
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    
 }
