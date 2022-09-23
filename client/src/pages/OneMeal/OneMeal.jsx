@@ -6,6 +6,7 @@ import Loader from '../../Components/Loader';
 import './OneMeal.css';
 import Favorite from '../../Components/favorite/Favorite';
 /* eslint-disable react/prop-types */
+import { keys } from '../api_keys';
 
 function OneMeal() {
   const params = useParams();
@@ -21,15 +22,15 @@ function OneMeal() {
   const [BNutr, setBNutr] = useState(false);
   const [BEqu, setBEqu] = useState(false);
 
-  const apiKey = '8958ed8f6c484d13a2a65ea80376f7f9'; // Ключ Антона
+  // const apiKey = '8958ed8f6c484d13a2a65ea80376f7f9'; // Ключ Антона
   // const apiKey = 'eb668d0ba9a74900b0d10015bd11fd21'; // Запасной ключ
   // fetch запрос от сервера
   const { id } = params;
-  const url = `https://api.spoonacular.com/recipes/${id}/information?apiKey=${apiKey}`;
-  const urlIngr = `https://api.spoonacular.com/recipes/${id}/ingredientWidget.json?apiKey=${apiKey}`;
-  const urlNutr = `https://api.spoonacular.com/recipes/${id}/nutritionWidget.json?apiKey=${apiKey}`;
-  const urlSim = `https://api.spoonacular.com/recipes/${id}/similar?apiKey=${apiKey}`;
-  const urlEqu = `https://api.spoonacular.com/recipes/${id}/equipmentWidget.json?apiKey=${apiKey}`;
+  const url = `https://api.spoonacular.com/recipes/${id}/information?apiKey=${keys.apiKey4}`;
+  const urlIngr = `https://api.spoonacular.com/recipes/${id}/ingredientWidget.json?apiKey=${keys.apiKey4}`;
+  const urlNutr = `https://api.spoonacular.com/recipes/${id}/nutritionWidget.json?apiKey=${keys.apiKey4}`;
+  const urlSim = `https://api.spoonacular.com/recipes/${id}/similar?apiKey=${keys.apiKey4}`;
+  const urlEqu = `https://api.spoonacular.com/recipes/${id}/equipmentWidget.json?apiKey=${keys.apiKey4}`;
   const options = {
     method: 'GET',
     headers: {
