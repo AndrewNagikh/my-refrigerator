@@ -17,10 +17,10 @@ import './profileCSS.css';
 import RecipeCard from '../../Components/RecipeCard';
 
 function Profile() {
-  const userId = useSelector((store) => store.user.id);
   const [fav, setFav] = useState('non-active');
   const [meal, setMeal] = useState('non-active');
   const [mealData, setMealData] = useState([]);
+  const userId = useSelector((store) => store.user.id);
   const userName = useSelector((store) => store.user.login);
   const userIcon = useSelector((store) => store.user.imageUrl);
   const isAuth = useSelector((store) => store.isAuth);
