@@ -18,7 +18,7 @@
 	box-shadow: var(--card-shadow);
 	border-radius: var(--global-radius);
 	color: var(--card-text-color);
-	font-family: 'Poppins', sans-serif;
+	/* font-family: 'Mont Blanc'; */
 	line-height: 1.5;
 	width: 22rem;
     margin-bottom: 2rem;
@@ -98,4 +98,13 @@ img{
 .dish-stats li svg path {
 	stroke: var(--card-text-color);
 	stroke-opacity: .25;
+}
+
+.btn{
+	width: 100%;
+}
+
+.svg-small{
+	width: 13px;
+	height: 13px
 }

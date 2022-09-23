@@ -1,8 +1,5 @@
 @import '../pages/cssVariables.css';
 
-* {
-    font-family: 'Roboto', sans-serif;
-}
 
 .ingridient-item {
     z-index: 1;
