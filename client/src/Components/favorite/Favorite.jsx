@@ -18,10 +18,8 @@ export default function Favorite({ id, className }) {
           credentials: 'include',
           headers: { 'Content-type': 'application/json' },
         });
-        console.log('response', response);
         const result = await response.json();
         const favorite = result.fav;
-        console.log('favorite', favorite);
         setFavValue(favorite);
       } catch (error) {
         console.log('check fromt error', error);

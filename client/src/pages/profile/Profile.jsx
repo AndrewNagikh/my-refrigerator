@@ -17,9 +17,11 @@ import './profileCSS.css';
 import RecipeCard from '../../Components/RecipeCard';
 
 function Profile() {
+  const apiKey = 'aa844e1894b74bc2a3e672c59f887e64';
   const [fav, setFav] = useState('non-active');
   const [meal, setMeal] = useState('non-active');
   const [mealData, setMealData] = useState([]);
+  const [favData, setFavData] = useState([]);
   const userId = useSelector((store) => store.user.id);
   const userName = useSelector((store) => store.user.login);
   const userIcon = useSelector((store) => store.user.imageUrl);
@@ -32,9 +34,20 @@ function Profile() {
     onLogoutSuccess: navToMain,
   });
 
-  const favClick = () => {
+  const favClick = async () => {
     setFav('active');
     setMeal('non-active');
+    const getFavreq = await fetch('http://localhost:3100/api/v1/getUserFav/', {
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'Content-type': 'application/json' },
+      body: JSON.stringify({ userId }),
+    });
+    const getFavRes = await getFavreq.json();
+    const ids = getFavRes.join(',');
+    const recipesRes = await fetch(`https://api.spoonacular.com/recipes/informationBulk?ids=${ids}&apiKey=${apiKey}`);
+    const recipesReq = await recipesRes.json();
+    setFavData(recipesReq);
   };
   const mealClick = async () => {
     setFav('non-active');
@@ -103,7 +116,7 @@ function Profile() {
         <h2 onClick={mealClick} className={meal}>My meal plan</h2>
       </div>
       <div className="content">
-        {fav === 'active' ? 'fav' : mealData.map((meals) => <RecipeCard id={meals.id} url={`https://spoonacular.com/recipeImages/${meals.id}-556x370.jpg`} title={meals.title} summary={meals.summary} dishType="dish type" preparationMinutes={meals.readyInMinutes} key={meals.id} />)}
+        {fav === 'active' ? favData.map((favdata) => <RecipeCard id={favdata.id} url={`https://spoonacular.com/recipeImages/${favdata.id}-556x370.jpg`} title={favdata.title} summary={favdata.summary} dishType="dish type" preparationMinutes={favdata.readyInMinutes} key={favdata.id} />) : mealData.map((meals) => <RecipeCard id={meals.id} url={`https://spoonacular.com/recipeImages/${meals.id}-556x370.jpg`} title={meals.title} summary={meals.summary} dishType="dish type" preparationMinutes={meals.readyInMinutes} key={meals.id} />)}
       </div>
     </div>
   );
