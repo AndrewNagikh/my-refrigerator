@@ -15,7 +15,7 @@ function Refrigirator() {
   const apiKey = 'aa844e1894b74bc2a3e672c59f887e64';
   const dispath = useDispatch();
   const [ingridientsValue, setingridientsValue] = useState({ ingridient: '' });
-  const [ingridients, setIngridients] = useState({ isLoad: false, ingridients: [] });
+  const [ingridients, setIngridients] = useState({ isLoad: true, ingridients: [] });
   const [recipes, setRecipes] = useState([]);
   const ingCash = useSelector((store) => store.ingCash);
   const fridge = useSelector((store) => store.fridge);
@@ -37,6 +37,7 @@ function Refrigirator() {
         if (ingCash[ingridientsValue.ingridient]) {
           setIngridients({ isLoad: true, ingridients: ingCash[ingridientsValue.ingridient] });
         } else {
+          setIngridients({ isLoad: false, ingridients: [] });
           const ingridientsReq = await fetch(`https://api.spoonacular.com/food/ingredients/search?query=${ingridientsValue.ingridient}&apiKey=${apiKey}`);
           const ingridientRes = await ingridientsReq.json();
           dispath(addIng(ingridientRes.results, ingridientsValue.ingridient));
