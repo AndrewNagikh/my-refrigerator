@@ -71,7 +71,7 @@ function Refrigirator() {
         </div>
         <div className="ingridients col-md-6 col-sm-6 col-6">
           <h4 className="title">Here you can search and add ingridients to fridge</h4>
-          <div className="col-md-6 ing mb-4">
+          <div className="col-md-6 mb-4 ing">
             <img src="/img/search.svg" width="20" height="20" alt="..." />
             <input
               name="ingridient"
