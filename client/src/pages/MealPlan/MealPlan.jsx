@@ -24,14 +24,18 @@ function MealPlan() {
     }
   };
   const saveMealPlan = async () => {
-    const saveMealReq = await fetch('http://localhost:3100/api/v1/mealSave', {
-      credentials: 'include',
-      method: 'POST',
-      headers: { 'Content-type': 'application/json' },
-      body: JSON.stringify({ userId, meals: recipes.meals }),
-    });
-    if (saveMealReq.status === 200) {
-      alert('This meal plan added to your profile');
+    if (localStorage.getItem('isAuth')) {
+      const saveMealReq = await fetch('http://localhost:3100/api/v1/mealSave', {
+        credentials: 'include',
+        method: 'POST',
+        headers: { 'Content-type': 'application/json' },
+        body: JSON.stringify({ userId, meals: recipes.meals }),
+      });
+      if (saveMealReq.status === 200) {
+        alert('This meal plan added to your profile');
+      }
+    } else {
+      alert('Please, sing up if you want add meal plan to your profile');
     }
   };
   return (
