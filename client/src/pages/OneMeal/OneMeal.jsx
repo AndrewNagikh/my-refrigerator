@@ -21,7 +21,7 @@ function OneMeal() {
   const [BNutr, setBNutr] = useState(false);
   const [BEqu, setBEqu] = useState(false);
 
-  const apiKey = 'e0681a76c0224c2485034b40bf2fe2ef'; // Ключ Антона
+  const apiKey = '8958ed8f6c484d13a2a65ea80376f7f9'; // Ключ Антона
   // const apiKey = 'eb668d0ba9a74900b0d10015bd11fd21'; // Запасной ключ
   // fetch запрос от сервера
   const { id } = params;
@@ -38,9 +38,9 @@ function OneMeal() {
   };
   const ThisIngr = Ingr.ingredients?.map((el) => (
     <td>
-      {el.image !== null
-        ? <img src={`https://spoonacular.com/cdn/ingredients_100x100/${el.image}`} alt="" />
-        : <img src="https://playbcm.net/uploads/monthly_2019_06/1.png.52e7dbf919d58285dee3e0a89177c676.png" className="ingImg" alt="" />}
+      {el.image !== null && el.image !== 'no.jpg' && el.image !== 'no.png'
+        ? <img src={`https://spoonacular.com/cdn/ingredients_100x100/${el.image}`} className="this" alt="" />
+        : <img src="https://playbcm.net/uploads/monthly_2019_06/1.png.52e7dbf919d58285dee3e0a89177c676.png" className="ingImg this" alt="" />}
       <div className="ourname">
         {el.name}
         {' '}
@@ -69,7 +69,7 @@ function OneMeal() {
         {el.name}
         {' '}
       </div>
-      {el.image !== null && el.image !== 'no.png'
+      {el.image !== null && el.image !== 'no.png' && el.image !== 'no.jpg'
         ? <img src={`https://spoonacular.com/cdn/equipment_100x100/${el.image}`} alt="" />
         : <img src="https://playbcm.net/uploads/monthly_2019_06/1.png.52e7dbf919d58285dee3e0a89177c676.png" className="ingImg" alt="" />}
     </td>
@@ -130,40 +130,40 @@ function OneMeal() {
       ? (
         <div className="full">
           <div className="card mb-3" width="540px;">
-            <div className="d-flex justify-content-between">
-              <div className="row g-0">
-                <div className="col-md-4 align-self-center">
-                  <img src={ThisRec.image} className="img-fluid rounded-start mainImg" alt="..." />
-                </div>
-                <div className="col-md-8">
-                  <div className="card-body">
+            <div className="row g-0">
+              <div className="col-md-4 align-self-center">
+                <img src={ThisRec.image} className="img-fluid rounded-start mainImg" alt="..." />
+              </div>
+              <div className="col-md-8">
+                <div className="card-body">
+                  <div className="d-flex justify-content-between">
                     <h5 className="card-title">{ThisRec.title}</h5>
-                    <p className="card-text">{ThisRec.instructions}</p>
-                    <p className="card-text">
-                      Сooking time:
+                    <div>
+                      <Favorite id={id} className="svg-big" />
+                    </div>
+                  </div>
+                  <p className="card-text">{ThisRec.instructions}</p>
+                  <p className="card-text">
+                    Сooking time:
+                    {' '}
+                    {ThisRec.timeOfCook}
+                    {' '}
+                  </p>
+                  <p className="card-text">
+                    <small className="text-muted">
+                      Servings:
                       {' '}
-                      {ThisRec.timeOfCook}
-                      {' '}
-                    </p>
-                    <p className="card-text">
-                      <small className="text-muted">
-                        Servings:
-                        {' '}
-                        {ThisRec.servings}
-                      </small>
-                    </p>
-                    <div className="card">
-                      <div className="card-body">
-                        <div className="d-flex justify-content-between flex-wrap">
-                          {ThisIngr}
-                        </div>
+                      {ThisRec.servings}
+                    </small>
+                  </p>
+                  <div className="card">
+                    <div className="card-body">
+                      <div className="d-flex justify-content-between flex-wrap">
+                        {ThisIngr}
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div>
-                <Favorite id={id} className="svg-big" />
               </div>
             </div>
           </div>
